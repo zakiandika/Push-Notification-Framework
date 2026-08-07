@@ -643,6 +643,38 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 .cs-stepnum .capwrap p{color:var(--muted);font-size:.86rem;margin-top:.4rem;line-height:1.5;}
 .cs-source{margin-top:2.4rem;font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--muted2);}
 @media(max-width:640px){.cs-stepnum{grid-template-columns:1fr;gap:.4rem;}}
+
+/* ============ MORNING BRIEF DETAIL OVERLAY ============ */
+.mb-overlay{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;background:rgba(6,10,20,.55);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .3s ease;padding:2rem;}
+.mb-overlay.open{opacity:1;pointer-events:auto;}
+.mb-phone{width:300px;max-height:640px;border-radius:42px;background:linear-gradient(160deg,#16233F,#060A14);border:1px solid rgba(255,255,255,.12);padding:14px;position:relative;box-shadow:0 50px 90px -20px rgba(10,31,68,.55);transform:translateY(24px) scale(.96);transition:transform .35s cubic-bezier(.16,.8,.24,1);}
+.mb-overlay.open .mb-phone{transform:translateY(0) scale(1);}
+.mb-phone::before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:78px;height:20px;background:#000;border-radius:14px;z-index:3;}
+.mb-screen{background:radial-gradient(120% 90% at 50% 0%, #1C2A48 0%, #080C16 65%);border-radius:30px;height:612px;position:relative;overflow-y:auto;color:#EDF0F7;padding-bottom:1rem;-ms-overflow-style:none;scrollbar-width:none;}
+.mb-screen::-webkit-scrollbar{display:none;}
+.mb-topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:.7rem;padding:52px 18px 12px;background:linear-gradient(180deg,#1C2A48 60%,rgba(28,42,72,0));}
+.mb-back{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;color:#EDF0F7;cursor:pointer;flex:0 0 auto;padding:0;}
+.mb-back svg{width:16px;height:16px;}
+.mb-topbar-title{font-family:'IBM Plex Mono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:#9AA6BE;}
+.mb-hero{padding:.4rem 20px 1.2rem;}
+.mb-greeting{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:#93A0BC;letter-spacing:.04em;}
+.mb-hero h2{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.4rem;color:#F5F7FB;margin-top:.5rem;line-height:1.3;}
+.mb-hero .sub{font-size:.8rem;color:#B7C1D8;margin-top:.5rem;line-height:1.5;}
+.mb-weather{margin-top:1rem;display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.7rem .9rem;font-size:.76rem;color:#C7D0E6;}
+.mb-weather svg{width:18px;height:18px;color:#F2B84B;flex:0 0 auto;}
+.mb-section-label{padding:0 20px;margin-top:1.4rem;margin-bottom:.6rem;font-family:'IBM Plex Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:#7E8BA8;}
+.mb-story{margin:0 20px .7rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:.85rem .95rem;}
+.mb-story .tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:.18rem .5rem;border-radius:20px;background:var(--sc,var(--blue));color:#fff;}
+.mb-story h4{font-family:'Manrope',sans-serif;font-size:.86rem;font-weight:700;color:#F5F7FB;margin-top:.55rem;line-height:1.35;}
+.mb-story p{font-size:.74rem;color:#AAB4CC;margin-top:.35rem;line-height:1.5;}
+.mb-footer-note{margin:1.4rem 20px 0;font-size:.7rem;color:#6E7B98;line-height:1.5;text-align:center;padding-bottom:.6rem;}
+.notif-open-hint{position:absolute;bottom:8px;right:12px;font-family:'IBM Plex Mono',monospace;font-size:.56rem;color:#6E7B98;letter-spacing:.03em;opacity:.85;}
+.phone-notif.clickable{cursor:pointer;position:relative;padding-bottom:1.6rem;}
+.phone-notif.clickable:hover{border-color:rgba(255,255,255,.22);box-shadow:0 0 0 1px rgba(255,255,255,.08);}
+@media(max-width:520px){
+  .mb-overlay{padding:1rem;}
+  .mb-phone{width:100%;max-width:300px;}
+}
 </style>
 </head>
 <body>
@@ -665,6 +697,57 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 <div class="navbtns">
   <button class="navbtn" id="prevBtn" type="button" aria-label="Bagian sebelumnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button>
   <button class="navbtn" id="nextBtn" type="button" aria-label="Bagian selanjutnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+</div>
+
+<!-- ============ MORNING BRIEF DETAIL OVERLAY ============ -->
+<div class="mb-overlay" id="mbOverlay">
+  <div class="mb-phone">
+    <div class="mb-screen">
+      <div class="mb-topbar">
+        <button class="mb-back" id="mbBackBtn" type="button" aria-label="Kembali"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <div class="mb-topbar-title">Morning Brief</div>
+      </div>
+      <div class="mb-hero">
+        <div class="mb-greeting">RABU, 29 JULI · 07.00</div>
+        <h2>Selamat Pagi, Rizki ☀️</h2>
+        <p class="sub">Ini 5 berita penting yang perlu kamu tahu sebelum memulai hari.</p>
+        <div class="mb-weather">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+          <span>Jakarta, 27°C &middot; Cerah berawan sepanjang pagi</span>
+        </div>
+      </div>
+
+      <div class="mb-section-label">Ringkasan Hari Ini</div>
+
+      <div class="mb-story" style="--sc:var(--red)">
+        <span class="tag">Breaking</span>
+        <h4>Gempa 6,8 Guncang Jabar, BMKG: Tidak Berpotensi Tsunami</h4>
+        <p>Getaran dirasakan hingga Jakarta &amp; Bandung. Tim SAR gabungan sudah diterjunkan ke titik terdampak untuk asesmen awal.</p>
+      </div>
+      <div class="mb-story" style="--sc:var(--amber)">
+        <span class="tag">Editorial</span>
+        <h4>Kenapa Harga Beras Naik? Ini Penyebab &amp; Dampaknya</h4>
+        <p>Analisis lengkap soal rantai pasok &amp; kebijakan yang mendorong kenaikan harga sepekan terakhir.</p>
+      </div>
+      <div class="mb-story" style="--sc:var(--green)">
+        <span class="tag">Personal</span>
+        <h4>Lanjutan Berita yang Kamu Ikuti: Kasus Korupsi Jampidsus</h4>
+        <p>Update terbaru dari topik yang kamu simak, tersedia karena kamu mengikuti perkembangan isu ini.</p>
+      </div>
+      <div class="mb-story" style="--sc:var(--violet)">
+        <span class="tag">Ekonomi</span>
+        <h4>Rupiah Menguat Tipis di Tengah Sentimen Global</h4>
+        <p>Nilai tukar bergerak stabil menjelang rilis data inflasi akhir pekan ini.</p>
+      </div>
+      <div class="mb-story" style="--sc:var(--teal)">
+        <span class="tag">Olahraga</span>
+        <h4>Timnas Siapkan Latihan Intensif Jelang Laga Final</h4>
+        <p>Pelatih fokus pada strategi bertahan usai kemenangan di babak semifinal.</p>
+      </div>
+
+      <p class="mb-footer-note">Ringkasan ini disusun otomatis berdasarkan editorial pilihan &amp; topik yang kamu ikuti. Buka aplikasi untuk membaca selengkapnya.</p>
+    </div>
+  </div>
 </div>
 
 <main>
@@ -975,7 +1058,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
     <div class="sh reveal" data-anim="up">
       <div class="eyebrow"><span class="dot"></span>02 Strategi: Prinsip &amp; Framework</div>
       <h2>Lima kategori push notification detikcom</h2>
-      <p class="lede">Setiap kategori punya tujuan, pemicu, dan gaya penulisan berbeda. Geser layar untuk melihat tampilannya di lockscreen user.</p>
+      <p class="lede">Setiap kategori punya tujuan, pemicu, dan gaya penulisan berbeda. Geser layar untuk melihat tampilannya di lockscreen user. Khusus Push Habit (Morning Brief), klik notifikasinya untuk melihat detail isinya.</p>
     </div>
 
     <div class="scrolly">
@@ -996,7 +1079,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
       </div>
 
       <div class="steps">
-        <div class="step" data-color="var(--red)" data-title="BREAKING: Gempa 6,8 Guncang Jabar" data-body="BMKG: Tidak berpotensi tsunami.">
+        <div class="step" data-color="var(--red)" data-title="BREAKING: Gempa 6,8 Guncang Jabar" data-body="BMKG: Tidak berpotensi tsunami." data-clickable="0">
           <div class="tag">A: Breaking News</div>
           <h3>Kecepatan &amp; akurasi</h3>
           <p>Berita penting &amp; mendesak yang harus segera diketahui user, dikirim otomatis dari sistem editorial. Fokus pada kejadian utama, tanpa sapaan personal.</p>
@@ -1007,7 +1090,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
           </div>
         </div>
 
-        <div class="step" data-color="var(--amber)" data-title="⭐ Kenapa Harga Beras Naik?" data-body="Simak analisis lengkap penyebab dan dampaknya.">
+        <div class="step" data-color="var(--amber)" data-title="⭐ Kenapa Harga Beras Naik?" data-body="Simak analisis lengkap penyebab dan dampaknya." data-clickable="0">
           <div class="tag">B: Editorial Push</div>
           <h3>Kurasi manual editor</h3>
           <p>Push yang dikurasi manual oleh editor, ditargetkan berdasarkan interest, channel, topik, demografi, atau lokasi. Angle menarik atau pertanyaan, tanpa sapaan personal.</p>
@@ -1018,7 +1101,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
           </div>
         </div>
 
-        <div class="step" data-color="var(--violet)" data-title="☀️ Morning Brief" data-body="Selamat pagi, Rizki! 5 berita penting yang perlu kamu tahu hari ini.">
+        <div class="step" data-color="var(--violet)" data-title="☀️ Morning Brief" data-body="Selamat pagi, Rizki! 5 berita penting yang perlu kamu tahu hari ini." data-clickable="1">
           <div class="tag">C: Push Habit</div>
           <h3>Ritme harian konsisten</h3>
           <p>Push terjadwal yang membentuk ritme baca harian, tujuannya menjadikan detikcom kebiasaan. Boleh pakai nama user, tone friendly &amp; conversational.</p>
@@ -1027,9 +1110,10 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
             <div><b>Lunch Update</b>12.00 · ☀️ Selamat Siang</div>
             <div><b>Todays Recap</b>20.00 · 🌙 Selamat Malam</div>
           </div>
+          <p style="margin-top:1rem;font-size:.8rem;color:var(--violet);font-weight:600;">Coba klik notifikasi di layar sebelah kiri untuk melihat isi Morning Brief-nya &rarr;</p>
         </div>
 
-        <div class="step" data-color="var(--green)" data-title="🔄 Rizki, Ini Lanjutan Berita yang Kamu Ikuti" data-body="Update terbaru kasus korupsi Jampidsus">
+        <div class="step" data-color="var(--green)" data-title="🔄 Rizki, Ini Lanjutan Berita yang Kamu Ikuti" data-body="Update terbaru kasus korupsi Jampidsus" data-clickable="0">
           <div class="tag">D: Push Personal</div>
           <h3>Konten paling relevan by history &amp; minat</h3>
           <p>Push berbasis histori baca &amp; minat individual user, termasuk kelanjutan artikel/topik yang belum tuntas dan rekomendasi sesuai preferensi. Wajib pakai nama, jangan terdengar seperti broadcast massal.</p>
@@ -1041,7 +1125,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
           </div>
         </div>
 
-        <div class="step" data-color="var(--promo)" data-title="🎁 Rizki, Jangan Lewatkan Event Terbaru!" data-body="Daftar sekarang, kuota terbatas untuk event spesial minggu ini.">
+        <div class="step" data-color="var(--promo)" data-title="🎁 Rizki, Jangan Lewatkan Event Terbaru!" data-body="Daftar sekarang, kuota terbatas untuk event spesial minggu ini." data-clickable="0">
           <div class="tag">E: Promo Push</div>
           <h3>Mendorong aksi tertentu</h3>
           <p>Mendorong user melakukan aksi spesifik: aktivasi fitur, ajakan langganan, atau penawaran. Fokus pada benefit &amp; CTA yang jelas, nama user opsional.</p>
@@ -1614,25 +1698,6 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
         <div class="v">Naik mengikuti Objective Framework</div>
         <p>Engagement → Growth → Habit &amp; Retention.</p>
       </div>
-      <div class="impact-card reveal" data-anim="up" style="transition-delay:.24s;">
-        <h4>Peluang Revenue</h4>
-        <div class="v">Belum dikuantifikasi</div>
-        <p>Berpotensi lewat inventory Push Promo bertarget &amp; user base yang lebih sehat — akan diestimasi bersama tim Growth/Monetization setelah data eksperimen fase 2 tersedia.</p>
-      </div>
-    </div>
-
-    <div class="urg-cost reveal" data-anim="up">
-      <div class="col">
-        <div class="kl">Setiap Hari Ditunda</div>
-        <div class="big">~58.500 klik hilang</div>
-        <div class="kl" style="margin-top:.3rem;font-size:.62rem;">selisih antara kondisi saat ini &amp; benchmark industri, per hari</div>
-      </div>
-      <div class="mid">→</div>
-      <div class="col">
-        <div class="kl">Potensi Bila Segera Ditangani</div>
-        <div class="big">Engagement, DAU &amp; retensi naik berjenjang</div>
-        <div class="kl" style="margin-top:.3rem;font-size:.62rem;">mengikuti Objective Framework: engagement → growth → habit &amp; retention</div>
-      </div>
     </div>
   </div>
 </section>
@@ -1763,6 +1828,7 @@ const catSteps = document.querySelectorAll('#categories .step');
 const catNotif = document.getElementById('catNotif');
 const catTitle = document.getElementById('catTitle');
 const catBody = document.getElementById('catBody');
+let catCurrentClickable = false;
 const catObserver = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
@@ -1772,10 +1838,42 @@ const catObserver = new IntersectionObserver((entries)=>{
       catNotif.style.setProperty('--tier-color', c);
       catTitle.textContent = e.target.dataset.title;
       catBody.textContent = e.target.dataset.body;
+      catCurrentClickable = e.target.dataset.clickable === '1';
+      catNotif.classList.toggle('clickable', catCurrentClickable);
+      const existingHint = catNotif.querySelector('.notif-open-hint');
+      if(existingHint) existingHint.remove();
+      if(catCurrentClickable){
+        const hint = document.createElement('div');
+        hint.className = 'notif-open-hint';
+        hint.textContent = 'ketuk untuk buka';
+        catNotif.appendChild(hint);
+      }
     }
   });
 },{threshold:0.6, rootMargin:'-20% 0px -20% 0px'});
 catSteps.forEach(s=>catObserver.observe(s));
+
+// open Morning Brief detail on notification click
+const mbOverlay = document.getElementById('mbOverlay');
+const mbBackBtn = document.getElementById('mbBackBtn');
+function openMorningBrief(){
+  mbOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMorningBrief(){
+  mbOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+catNotif.addEventListener('click', ()=>{
+  if(catCurrentClickable){ openMorningBrief(); }
+});
+mbBackBtn.addEventListener('click', closeMorningBrief);
+mbOverlay.addEventListener('click', (e)=>{
+  if(e.target === mbOverlay){ closeMorningBrief(); }
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape'){ closeMorningBrief(); }
+});
 
 // roadmap scrolly, cohort population grid
 const popGrid = document.getElementById('popGrid');
