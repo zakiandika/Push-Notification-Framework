@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Push Notification Strategy: detikcom</title>
+<title>Notification Strategy: detikcom</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -122,8 +122,10 @@ p.lede{font-size:1.12rem;line-height:1.65;color:var(--muted);max-width:640px;fon
 #hero::before{content:"";position:absolute;top:-10%;right:-10%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle, rgba(20,80,224,.20), rgba(20,80,224,0) 70%);pointer-events:none;}
 .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:4rem;align-items:center;width:100%;position:relative;}
 .hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.16em;color:var(--blue);text-transform:uppercase;margin-bottom:1.4rem;}
-.hero-title{font-size:clamp(2.6rem,5.4vw,4.6rem);line-height:1.06;font-weight:800;}
+.hero-title{font-size:clamp(2.6rem,5.4vw,4.6rem);line-height:1.06;font-weight:800;min-height:2.3em;}
 .hero-title em{font-style:normal;font-weight:500;color:var(--blue);}
+.type-cursor{display:inline-block;color:var(--blue);font-weight:400;animation:blinkCursor 1s step-end infinite;}
+@keyframes blinkCursor{0%,49%{opacity:1;}50%,100%{opacity:0;}}
 .hero-sub{margin-top:1.6rem;font-size:1.15rem;color:var(--muted);max-width:520px;line-height:1.6;}
 .hero-caption{margin-top:2.6rem;font-size:.88rem;color:var(--muted2);max-width:480px;line-height:1.6;}
 .scrollcue{margin-top:3.4rem;font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:.6rem;}
@@ -242,6 +244,24 @@ p.lede{font-size:1.12rem;line-height:1.65;color:var(--muted);max-width:640px;fon
   .prin-node{position:static;transform:none;width:100%;margin-bottom:1rem;}
 }
 
+/* ============ PRINCIPLES ROW (zigzag) ============ */
+.prin-zigzag{margin-top:3.4rem;}
+.prin-zig-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;position:relative;}
+.prin-zig-row + .prin-zig-row{margin-top:2.6rem;}
+.prin-zig-row.row-down{margin-top:0;}
+.prin-zig-node{background:#fff;border-radius:16px;padding:1.5rem 1.5rem 1.6rem;border:1px solid var(--line-soft);box-shadow:0 1px 2px rgba(13,34,68,.04), 0 14px 26px -18px rgba(13,34,68,.22);position:relative;}
+.prin-zig-row.row-down .prin-zig-node{margin-top:2.6rem;}
+.prin-zig-row.row-down .prin-zig-node:nth-child(2){margin-top:0;}
+.prin-zig-node .prin-tag{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;}
+.prin-zig-node h3{font-size:1.05rem;margin-top:.4rem;}
+.prin-zig-node p{color:var(--muted);font-size:.82rem;margin-top:.4rem;line-height:1.55;}
+.prin-zig-connector{position:absolute;color:var(--line);pointer-events:none;}
+@media(max-width:760px){
+  .prin-zig-row{grid-template-columns:1fr;}
+  .prin-zig-row.row-down .prin-zig-node{margin-top:0 !important;}
+  .prin-zig-row + .prin-zig-row{margin-top:1.4rem;}
+}
+
 /* ============ SCROLLY (categories + roadmap) ============ */
 .scrolly{display:grid;grid-template-columns:.95fr 1.05fr;gap:4rem;margin-top:3rem;}
 .scrolly-visual{position:sticky;top:14vh;align-self:start;height:70vh;display:flex;flex-direction:column;justify-content:center;}
@@ -332,6 +352,27 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 .parrow{color:var(--muted2);padding:0 .7rem;font-family:'IBM Plex Mono',monospace;flex:0 0 auto;}
 @media(max-width:860px){.pipeline{flex-direction:column;align-items:stretch;} .parrow{transform:rotate(90deg);padding:.3rem 0;align-self:center;}}
 
+/* ============ FUNNEL (Kirim-Buka-Abaikan-Pergi) ============ */
+.funnel-wrap{margin-top:3.5rem;background:#fff;border-radius:22px;border:1px solid var(--line-soft);box-shadow:0 1px 2px rgba(13,34,68,.04), 0 18px 34px -20px rgba(13,34,68,.26);padding:2.4rem 2.2rem 2rem;}
+.funnel-track{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+.funnel-stage{position:relative;padding:0 1rem;text-align:center;}
+.funnel-stage:not(:last-child)::after{content:"";position:absolute;top:34px;right:-4px;width:24px;height:2px;background:var(--line);}
+.funnel-stage:not(:last-child)::before{content:"";position:absolute;top:28px;right:-8px;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid var(--line);z-index:2;}
+.funnel-figures{display:flex;justify-content:center;gap:3px;height:68px;align-items:flex-end;margin-bottom:.4rem;flex-wrap:wrap;max-width:180px;margin-left:auto;margin-right:auto;}
+.funnel-figures svg{width:13px;height:13px;flex:0 0 auto;}
+.funnel-figures svg .fig-body{fill:var(--fig-color,var(--line));}
+.funnel-num{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.5rem;color:var(--text);}
+.funnel-num.accent{color:var(--red);}
+.funnel-sub{font-family:'IBM Plex Mono',monospace;font-size:.64rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.05em;margin-top:.2rem;}
+.funnel-label{margin-top:1rem;}
+.funnel-label .tag{font-family:'IBM Plex Mono',monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--fig-color,var(--muted));font-weight:700;}
+.funnel-label h4{font-size:1rem;margin-top:.35rem;}
+.funnel-label p{font-size:.78rem;color:var(--muted);margin-top:.4rem;line-height:1.5;}
+@media(max-width:860px){
+  .funnel-track{grid-template-columns:1fr;gap:2rem;}
+  .funnel-stage:not(:last-child)::after,.funnel-stage:not(:last-child)::before{display:none;}
+}
+
 /* ============ SEGMENTATION ============ */
 .seg-grid{grid-template-columns:repeat(4,1fr);margin-top:3rem;}
 .seg-grid .card{padding:1.6rem 1.4rem;}
@@ -341,7 +382,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 .seg-budget small{font-size:.58rem;color:var(--muted2);display:block;text-transform:none;line-height:1.3;max-width:100px;margin-top:.2rem;}
 .seg-mix{display:flex;flex-wrap:wrap;gap:.35rem;margin:.9rem 0;}
 .chip{font-family:'IBM Plex Mono',monospace;font-size:.6rem;padding:.25rem .55rem;border-radius:20px;background:var(--panel2);color:var(--muted);letter-spacing:.03em;text-transform:uppercase;font-weight:700;}
-.chip.c-habit{background:rgba(10,140,140,.12);color:var(--teal);}
+.chip.c-habit{background:rgba(106,76,203,.12);color:var(--violet);}
 .chip.c-editorial{background:rgba(184,121,10,.12);color:var(--amber);}
 .chip.c-continuity{background:rgba(106,76,203,.12);color:var(--violet);}
 .chip.c-personal{background:rgba(24,146,105,.12);color:var(--green);}
@@ -372,6 +413,12 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 
 /* ============ EXPERIMENTS ============ */
 .exp-list{display:flex;flex-direction:column;gap:1.2rem;margin-top:3rem;}
+.exp-list > .exp-card.reveal:nth-child(1){transition-delay:.04s;}
+.exp-list > .exp-card.reveal:nth-child(2){transition-delay:.14s;}
+.exp-list > .exp-card.reveal:nth-child(3){transition-delay:.24s;}
+.exp-list > .exp-card.reveal:nth-child(4){transition-delay:.34s;}
+.exp-list > .exp-card.reveal:nth-child(5){transition-delay:.44s;}
+.exp-list > .exp-card.reveal:nth-child(6){transition-delay:.54s;}
 .exp-card{background:#fff;border-radius:18px;padding:1.8rem 2rem;border:1px solid var(--line-soft);box-shadow:0 1px 2px rgba(13,34,68,.04), 0 14px 26px -18px rgba(13,34,68,.2);}
 .exp-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.4rem;}
 .exp-head h3{font-size:1.15rem;}
@@ -406,8 +453,70 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 @media(max-width:860px){.vis-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:520px){.vis-grid{grid-template-columns:1fr;}}
 
+/* ============ URGENCY ============ */
+.urg-grid{grid-template-columns:repeat(2,1fr);margin-top:3rem;}
+.urg-grid .card{border-top:4px solid var(--red);padding:1.9rem 2rem;}
+.urg-grid .card h4{font-family:'IBM Plex Mono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--red);margin-bottom:.7rem;}
+.urg-grid .card h3{font-size:1.15rem;margin-bottom:.5rem;}
+.urg-grid .card p{font-size:.9rem;}
+.urg-cost{margin-top:3rem;background:#fff;border-radius:20px;padding:2rem 2.2rem;border:1px solid var(--line-soft);box-shadow:0 1px 2px rgba(13,34,68,.04), 0 14px 26px -18px rgba(13,34,68,.2);display:grid;grid-template-columns:1fr auto 1fr;gap:1.6rem;align-items:center;}
+.urg-cost .col{text-align:center;}
+.urg-cost .kl{font-family:'IBM Plex Mono',monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted2);}
+.urg-cost .big{font-family:'Manrope',sans-serif;font-size:2rem;font-weight:800;margin-top:.5rem;}
+.urg-cost .col:first-child .big{color:var(--red);}
+.urg-cost .col:last-child .big{color:var(--green);}
+.urg-cost .mid{display:flex;align-items:center;justify-content:center;color:var(--muted2);font-size:1.6rem;}
+@media(max-width:860px){.urg-grid{grid-template-columns:1fr;} .urg-cost{grid-template-columns:1fr;} .urg-cost .mid{transform:rotate(90deg);padding:.4rem 0;}}
+
+/* ============ PRODUCT PRINCIPLE ============ */
+#principle{padding-top:9rem;padding-bottom:9rem;}
+.principle-quote{max-width:820px;margin:3rem auto 0;text-align:center;}
+.principle-quote .big-line{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(1.6rem,3.6vw,2.6rem);line-height:1.3;color:var(--text);}
+.principle-quote .big-line em{font-style:normal;color:var(--blue);}
+.principle-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:3.4rem;max-width:960px;margin-left:auto;margin-right:auto;}
+.principle-pillars .card{text-align:center;padding:1.8rem 1.5rem;}
+.principle-pillars .card h4{font-family:'IBM Plex Mono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);margin-bottom:.6rem;}
+@media(max-width:760px){.principle-pillars{grid-template-columns:1fr;}}
+
+
+/* ============ EXEC SUMMARY ============ */
+.t-hero.bad .big{color:var(--red);}
+.tile-num{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.6rem;color:var(--text);line-height:1;}
+.tile-cap{color:var(--muted);font-size:.78rem;margin-top:.5rem;line-height:1.5;}
+.mini-pill{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:.6rem;padding:.3rem .6rem;border-radius:20px;background:var(--panel);color:var(--text);display:inline-flex;align-items:center;gap:.3rem;text-transform:uppercase;letter-spacing:.03em;}
+.mini-pill .arrow{color:var(--green);}
+.mini-pill-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem;}
+
+/* ============ PROBLEM STATEMENT ============ */
+.quote-grid{grid-template-columns:1fr 1fr;margin-top:1.8rem;}
+.quote-card{background:#fff;border-radius:16px;padding:1.5rem 1.6rem;border:1px solid var(--line-soft);box-shadow:0 1px 2px rgba(13,34,68,.04), 0 14px 26px -18px rgba(13,34,68,.2);}
+.quote-card .qhead{display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--amber);}
+.quote-card .qhead .rating{color:var(--muted2);}
+.quote-card p{font-style:italic;color:var(--text);font-size:.87rem;line-height:1.6;margin-top:.8rem;}
+.quote-card p b{font-style:normal;color:var(--blue);}
+.stat-note.warn{background:rgba(217,59,39,.05);border-color:rgba(217,59,39,.18);}
+.stat-note.warn .kl{color:var(--red);}
+@media(max-width:700px){.quote-grid{grid-template-columns:1fr;}}
+
+/* ============ USER DECLINE CHART ============ */
+.decline-wrap{margin-top:2.6rem;background:#fff;border-radius:20px;padding:2rem 2.2rem;border:1px solid var(--line-soft);box-shadow:0 1px 2px rgba(13,34,68,.04), 0 16px 30px -18px rgba(13,34,68,.24);}
+.decline-charts{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.decline-card h4{font-size:.92rem;font-weight:700;margin-bottom:.15rem;}
+.decline-card .rng{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--muted2);margin-bottom:1rem;}
+.decline-card svg{width:100%;height:auto;display:block;}
+.decline-drop{margin-top:1.6rem;padding-top:1.6rem;border-top:1px dashed var(--line);text-align:center;font-size:.95rem;color:var(--muted);}
+.decline-drop b{color:var(--red);font-family:'Manrope',sans-serif;font-weight:800;}
+@media(max-width:760px){.decline-charts{grid-template-columns:1fr;}}
+
+/* ============ BUSINESS IMPACT ============ */
+.impact-row{margin-top:3rem;display:flex;flex-wrap:wrap;gap:1.1rem;}
+.impact-card{flex:1 1 200px;background:#fff;border-radius:14px;padding:1.6rem 1.4rem;border:1px solid var(--line-soft);box-shadow:0 1px 2px rgba(13,34,68,.04), 0 14px 26px -18px rgba(13,34,68,.22);text-align:left;}
+.impact-card h4{font-family:'IBM Plex Mono',monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);}
+.impact-card .v{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.3rem;margin-top:.6rem;color:var(--text);line-height:1.25;}
+.impact-card p{font-size:.8rem;color:var(--muted);margin-top:.55rem;line-height:1.55;}
+
 /* ============ CLOSING ============ */
-#closing{padding-top:9rem;padding-bottom:10rem;text-align:center;}
+#closing{padding-top:6rem;padding-bottom:10rem;text-align:center;}
 #closing .eyebrow{justify-content:center;}
 #closing h2{font-size:clamp(2.2rem,5vw,3.6rem);max-width:820px;margin:0 auto;}
 .team-row{margin-top:4rem;display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;}
@@ -466,6 +575,74 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
   .sched-row{grid-template-columns:1fr;gap:.6rem;}
   .sched-track{grid-template-columns:repeat(3,1fr);}
 }
+
+/* ============ NICHE COMPARE (existing vs ekspektasi, side by side) ============ */
+.niche-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:1.6rem;align-items:stretch;margin-top:3rem;}
+.niche-col{background:#fff;border-radius:20px;padding:1.9rem 1.8rem;border:1px solid var(--line-soft);box-shadow:0 1px 2px rgba(13,34,68,.04), 0 14px 26px -18px rgba(13,34,68,.2);}
+.niche-col-head{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.niche-col-tag{font-family:'IBM Plex Mono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;font-weight:700;padding:.32rem .85rem;border-radius:20px;white-space:nowrap;}
+.niche-col.existing .niche-col-tag{background:rgba(217,59,39,.1);color:var(--red);}
+.niche-col.expect .niche-col-tag{background:rgba(20,80,224,.1);color:var(--blue);}
+.niche-col-head p{margin:0;color:var(--muted);font-size:.84rem;line-height:1.5;}
+.niche-rows{display:flex;flex-direction:column;gap:1.05rem;}
+.niche-row{display:flex;align-items:center;gap:.9rem;}
+.niche-row .niche-icon{width:32px;height:32px;flex:0 0 auto;border-radius:9px;background:var(--panel2);color:var(--blue);display:flex;align-items:center;justify-content:center;}
+.niche-row .niche-icon svg{width:17px;height:17px;}
+.niche-col.existing .niche-row .niche-icon{color:var(--muted2);}
+.niche-row-body{flex:1;min-width:0;}
+.niche-row-top{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;}
+.niche-row-top h4{font-size:.86rem;font-weight:700;margin:0;}
+.niche-row-top .v{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);flex:0 0 auto;}
+.niche-col.expect .niche-row-top .v{color:var(--blue);font-weight:700;}
+.niche-bar-track{margin-top:.4rem;height:7px;border-radius:5px;background:var(--panel2);overflow:hidden;}
+.niche-bar-fill{height:100%;border-radius:5px;background:var(--blue);}
+.niche-col.existing .niche-bar-fill{background:var(--muted2);}
+.niche-mid{display:flex;align-items:center;justify-content:center;color:var(--muted2);font-size:1.6rem;}
+@media(max-width:860px){
+  .niche-compare{grid-template-columns:1fr;}
+  .niche-mid{transform:rotate(90deg);padding:.3rem 0;}
+}
+
+/* ============ PROMO INTERACTIVE ============ */
+.promo-interactive{margin-top:2.4rem;background:#fff;border-radius:20px;border:1px solid var(--line-soft);box-shadow:0 1px 2px rgba(13,34,68,.04), 0 16px 30px -18px rgba(13,34,68,.24);overflow:hidden;}
+.promo-toggle{display:flex;border-bottom:1px solid var(--line);}
+.promo-tab{flex:1;padding:1.1rem 1.2rem;background:var(--panel);border:none;font-family:'Manrope',sans-serif;font-weight:700;font-size:.88rem;color:var(--muted);cursor:pointer;transition:background .2s, color .2s;border-right:1px solid var(--line);}
+.promo-tab:last-child{border-right:none;}
+.promo-tab.active{background:#fff;color:var(--promo);}
+.promo-tab .st{display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted2);margin-top:.25rem;}
+.promo-tab.active .st{color:var(--promo);}
+.promo-panel{display:grid;grid-template-columns:.85fr 1.15fr;gap:0;}
+.promo-visual{padding:2.2rem;border-right:1px solid var(--line-soft);display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--panel);}
+.promo-reach-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;width:210px;}
+.promo-reach-dot{width:17px;height:17px;border-radius:4px;background:var(--panel2);transition:background .2s;}
+.promo-reach-dot.filled{background:var(--promo);}
+.promo-reach-pct{font-family:'Manrope',sans-serif;font-size:2.4rem;font-weight:800;color:var(--promo);margin-top:1.2rem;}
+.promo-reach-sub{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);margin-top:.3rem;text-align:center;}
+.promo-detail{padding:2.2rem;}
+.promo-detail p{color:var(--muted);font-size:.92rem;line-height:1.6;margin:0 0 1.2rem;}
+.promo-select-wrap{margin-bottom:1.2rem;display:none;}
+.promo-select-wrap.show{display:block;}
+.promo-select-wrap label{display:block;font-family:'IBM Plex Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted2);margin-bottom:.5rem;}
+.promo-select{width:100%;padding:.75rem 1rem;border-radius:10px;border:1px solid var(--line);background:#fff;font-family:'Inter',sans-serif;font-size:.9rem;color:var(--text);cursor:pointer;}
+.promo-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.4rem;}
+.promo-tag{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:700;padding:.35rem .8rem;border-radius:20px;background:rgba(194,59,143,.1);color:var(--promo);}
+@media(max-width:760px){
+  .promo-panel{grid-template-columns:1fr;}
+  .promo-visual{border-right:none;border-bottom:1px solid var(--line-soft);}
+  .promo-toggle{flex-direction:column;}
+  .promo-tab{border-right:none;border-bottom:1px solid var(--line);}
+}
+
+/* ============ CURRENT STATE (step-by-step number reveal) ============ */
+.cs-steps{margin-top:3.4rem;display:flex;flex-direction:column;gap:2.2rem;max-width:760px;}
+.cs-stepnum{display:grid;grid-template-columns:auto 1fr;gap:1.6rem;align-items:baseline;padding-bottom:2rem;border-bottom:1px solid var(--line);}
+.cs-stepnum:last-child{border-bottom:none;padding-bottom:0;}
+.cs-stepnum .big{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(2.4rem,5vw,3.4rem);line-height:1;color:var(--red);white-space:nowrap;}
+.cs-stepnum .big.neutral{color:var(--blue);}
+.cs-stepnum .capwrap h4{font-size:1.05rem;font-weight:700;margin:0;}
+.cs-stepnum .capwrap p{color:var(--muted);font-size:.86rem;margin-top:.4rem;line-height:1.5;}
+.cs-source{margin-top:2.4rem;font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--muted2);}
+@media(max-width:640px){.cs-stepnum{grid-template-columns:1fr;gap:.4rem;}}
 </style>
 </head>
 <body>
@@ -474,12 +651,14 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 
 <nav class="dotnav" id="dotnav">
   <a href="#hero" data-tip="Mulai" class="active"><span class="tip">Mulai</span></a>
-  <a href="#why" data-tip="01 Latar Belakang"><span class="tip">01 Latar Belakang</span></a>
-  <a href="#principles" data-tip="02 Framework Konten"><span class="tip">02 Framework Konten</span></a>
+  <a href="#agenda" data-tip="Agenda"><span class="tip">Agenda</span></a>
+  <a href="#current" data-tip="01 Mengapa Kita Perlu Berubah"><span class="tip">01 Mengapa Kita Perlu Berubah</span></a>
+  <a href="#principles" data-tip="02 Prinsip & Framework"><span class="tip">02 Prinsip & Framework</span></a>
   <a href="#priority" data-tip="03 Prioritas"><span class="tip">03 Prioritas</span></a>
   <a href="#engine" data-tip="04 Decision Engine"><span class="tip">04 Decision Engine</span></a>
   <a href="#segmentation" data-tip="05 Segmentasi & Governance"><span class="tip">05 Segmentasi & Governance</span></a>
   <a href="#experiments" data-tip="06 Eksperimen & Roadmap"><span class="tip">06 Eksperimen & Roadmap</span></a>
+  <a href="#business-impact" data-tip="07 Target & Dampak"><span class="tip">07 Target & Dampak</span></a>
   <a href="#closing" data-tip="Penutup"><span class="tip">Penutup</span></a>
 </nav>
 
@@ -489,15 +668,14 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 </div>
 
 <main>
-
 <!-- ============ HERO ============ -->
 <section id="hero">
   <div class="wrap hero-grid">
     <div>
       <div class="hero-kicker load-in l1">Core Media Platform</div>
-      <h1 class="hero-title load-in l2">Push Notification<br><em>Strategy</em></h1>
-      <p class="hero-sub load-in l3">Acuan strategi push notifikasi untuk seluruh platform detikcom.</p>
-      <div class="scrollcue load-in l4"><span class="line"></span> Scroll untuk mulai</div>
+      <h1 class="hero-title load-in l2"><span id="typeLine1"></span><br><em id="typeLine2"></em><span class="type-cursor" id="typeCursor">|</span></h1>
+      <p class="hero-sub load-in l3">Acuan strategi notifikasi untuk seluruh platform detikcom.</p>
+      <div class="scrollcue load-in l4"><span class="line"></span></div>
     </div>
     <div class="phone-wrap">
       <div class="phone load-in phone-in l6">
@@ -506,7 +684,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
           <div class="phone-date">Rabu, 29 Juli</div>
           <div class="phone-notif" style="--tier-color:var(--red)">
             <div class="notif-head"><span class="notif-app">detikcom</span><span class="notif-when">baru saja</span></div>
-            <div class="notif-title">🔴 BREAKING: Gempa M 6,8 Guncang Jabar</div>
+            <div class="notif-title">BREAKING: Gempa 6,8 Guncang Jabar</div>
             <div class="notif-body">BMKG: Tidak berpotensi tsunami.</div>
           </div>
         </div>
@@ -515,20 +693,31 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
   </div>
 </section>
 
-<!-- ============ WHY ============ -->
-<section id="why">
+<!-- ============ AGENDA (TOC) ============ -->
+<section id="agenda">
   <div class="wrap">
     <div class="sh reveal" data-anim="up">
-      <div class="eyebrow"><span class="dot"></span>01 Latar Belakang</div>
-      <h2>Push bukan sekadar traffic acquisition tool</h2>
-      <p class="lede">Di platform media digital, push notification memainkan lima peran sekaligus, bukan hanya cara mendatangkan klik.</p>
+      <div class="eyebrow"><span class="dot"></span>Agenda</div>
+      <h2>Tiga bagian dalam presentasi ini</h2>
     </div>
-    <div class="role-list">
-      <div class="role reveal" data-anim="left"><div class="num">1</div><h3>Traffic Acquisition</h3><p>Mendorong kunjungan instan ke artikel atau kanal tertentu.</p></div>
-      <div class="role reveal" data-anim="right"><div class="num">2</div><h3>Retention Engine</h3><p>Membawa user kembali sebelum mereka lupa pada aplikasi.</p></div>
-      <div class="role reveal" data-anim="left"><div class="num">3</div><h3>Habit Builder</h3><p>Membentuk ritme baca harian lewat momen yang konsisten.</p></div>
-      <div class="role reveal" data-anim="right"><div class="num">4</div><h3>Personalization Channel</h3><p>Menyapa user dengan konten paling relevan bagi mereka.</p></div>
-      <div class="role reveal" data-anim="left"><div class="num">5</div><h3>Lifecycle Communication</h3><p>Menyesuaikan pesan dengan tahap hidup user di aplikasi.</p></div>
+    <div class="obj-flow" style="margin-top:3rem;">
+      <div class="obj-cluster reveal" data-anim="scale">
+        <h4>01</h4>
+        <h3 style="font-size:1.3rem;margin-top:.6rem;">Mengapa Kita Perlu Berubah</h3>
+        <p style="color:var(--muted);font-size:.9rem;margin-top:.8rem;">Kondisi push saat ini, dan kenapa itu berisiko bagi retensi user</p>
+      </div>
+      <div class="obj-connector">→</div>
+      <div class="obj-cluster reveal" data-anim="scale">
+        <h4>02</h4>
+        <h3 style="font-size:1.3rem;margin-top:.6rem;">Strategi</h3>
+        <p style="color:var(--muted);font-size:.9rem;margin-top:.8rem;">Prinsip, kategori, prioritas, decision engine, segmentasi & governance</p>
+      </div>
+      <div class="obj-connector">→</div>
+      <div class="obj-cluster reveal" data-anim="scale">
+        <h4>03</h4>
+        <h3 style="font-size:1.3rem;margin-top:.6rem;">Eksekusi</h3>
+        <p style="color:var(--muted);font-size:.9rem;margin-top:.8rem;">Eksperimen, roadmap peluncuran, target KPI & dampak bisnis</p>
+      </div>
     </div>
   </div>
 </section>
@@ -537,76 +726,183 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 <section id="current">
   <div class="wrap">
     <div class="sh reveal" data-anim="up">
-      <div class="eyebrow"><span class="dot"></span>01 Latar Belakang</div>
-      <h2>Push notification detikcom saat ini</h2>
-      <p class="lede">Volume notif sangat tinggi, tetapi tingkat klik masih sangat rendah.</p>
+      <div class="eyebrow"><span class="dot"></span>01 Mengapa Kita Perlu Berubah</div>
+      <h2>Bagaimana notifikasi detikcom bekerja hari ini?</h2>
     </div>
 
-    <div class="cur-wrap">
-      <div>
-        <div class="cur-top">
-          <div class="cur-tile reveal" data-anim="up">
-            <div class="num" data-count="70" data-prefix="60–">60–70</div>
-            <div class="lab">Notif / hari</div>
-            <div class="desc">Volume push yang dikirim ke seluruh user</div>
-          </div>
-          <div class="cur-tile reveal" data-anim="up">
-            <div class="num">3 juta</div>
-            <div class="lab">User</div>
-            <div class="desc">Audiens yang menerima broadcast yang sama</div>
-          </div>
-          <div class="cur-tile bad reveal" data-anim="up">
-            <div class="num bad">0,05%</div>
-            <div class="lab">CTR rata-rata</div>
-            <div class="desc">Hanya ±1.500 klik</div>
-          </div>
-        </div>
-
-        <div class="cur-flow">
-          <div class="cur-card reveal" data-anim="left">
-            <h4>Notifikasi masih dikirim secara luas ke seluruh user, dengan mekanisme:</h4>
-            <ul>
-              <li>Satu konten untuk seluruh user</li>
-              <li>Belum ada program yang memanfaatkan data minat atau segmen user secara optimal</li>
-            </ul>
-          </div>
-          <div class="cur-arrow reveal" data-anim="scale">→</div>
-          <div class="cur-card tantangan reveal" data-anim="right">
-            <h4>Tantangan yang dihadapi:</h4>
-            <ul>
-              <li>Relevansi yang dirasakan user masih rendah</li>
-              <li>Engagement belum optimal</li>
-              <li>Sebagian user mengabaikan notifikasi</li>
-            </ul>
-          </div>
-        </div>
-        <div class="cur-source reveal" data-anim="up">Sumber: Background Riset &amp; Riset Tantangan Push Notifikasi (internal)</div>
+    <div class="cs-steps">
+      <div class="cs-stepnum reveal" data-anim="up">
+        <div class="big">60–70</div>
+        <div class="capwrap"><h4>notifikasi/hari/user</h4><p>Dikirim ke seluruh 3 juta user yang sama, apa pun minatnya.</p></div>
       </div>
+      <div class="cs-stepnum reveal" data-anim="up">
+        <div class="big neutral">3 juta</div>
+        <div class="capwrap"><h4>user, satu konten yang sama</h4><p>Belum ada program yang memanfaatkan data minat atau segmen user.</p></div>
+      </div>
+      <div class="cs-stepnum reveal" data-anim="up">
+        <div class="big">0,05%</div>
+        <div class="capwrap"><h4>CTR rata-rata</h4><p>Setara ±1.500 klik dari seluruh pengiriman harian.</p></div>
+      </div>
+      <div class="cs-stepnum reveal" data-anim="up">
+        <div class="big neutral">2–3%</div>
+        <div class="capwrap"><h4>CTR benchmark industri</h4><p>VWO Engage: &lt;20 push/hari/user, setara ±60.000 klik.</p></div>
+      </div>
+    </div>
 
-      <div class="bench-side">
-        <div class="bench-card reveal" data-anim="right">
-          <div class="kl">Jumlah Notifikasi Optimal</div>
-          <div class="val">15–20 Push / Hari / User</div>
-          <div class="src">Source: VWO Engage</div>
-        </div>
-        <div class="bench-card reveal" data-anim="right">
-          <div class="kl">Benchmark CTR Industri</div>
-          <div class="val">2–3%</div>
-          <div class="src">±60.000 klik</div>
-        </div>
+    <div class="cs-source reveal" data-anim="up">Sumber: Background Riset &amp; Riset Tantangan Push Notifikasi (internal); VWO Engage</div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section id="why">
+  <div class="wrap">
+    <div class="sh reveal" data-anim="up">
+      <div class="eyebrow"><span class="dot"></span>01 Mengapa Kita Perlu Berubah</div>
+      <h2>Idealnya, notifikasi memainkan lima peran sekaligus &mdash; bukan cuma sebagai cara mendatangkan klik</h2>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(5,1fr);margin-top:3rem;">
+      <div class="card reveal" data-anim="scale" style="text-align:center;">
+        <div class="prin-icon" style="margin:0 auto .8rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 14h6l-1 7 8-11h-6l1-7Z"/></svg></div>
+        <h3 style="font-size:.98rem;">Traffic Acquisition</h3>
+        <p style="font-size:.82rem;margin-top:.5rem;">Mendorong kunjungan instan</p>
+      </div>
+      <div class="card reveal" data-anim="scale" style="text-align:center;">
+        <div class="prin-icon" style="margin:0 auto .8rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></div>
+        <h3 style="font-size:.98rem;">Retention Engine</h3>
+        <p style="font-size:.82rem;margin-top:.5rem;">Membawa user kembali</p>
+      </div>
+      <div class="card reveal" data-anim="scale" style="text-align:center;">
+        <div class="prin-icon" style="margin:0 auto .8rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></div>
+        <h3 style="font-size:.98rem;">Habit Builder</h3>
+        <p style="font-size:.82rem;margin-top:.5rem;">Membentuk ritme baca harian</p>
+      </div>
+      <div class="card reveal" data-anim="scale" style="text-align:center;">
+        <div class="prin-icon" style="margin:0 auto .8rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/></svg></div>
+        <h3 style="font-size:.98rem;">Personalization</h3>
+        <p style="font-size:.82rem;margin-top:.5rem;">Menyapa dengan konten relevan</p>
+      </div>
+      <div class="card reveal" data-anim="scale" style="text-align:center;">
+        <div class="prin-icon" style="margin:0 auto .8rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-6 3 12 2-9 2 5h7"/></svg></div>
+        <h3 style="font-size:.98rem;">Lifecycle Comms</h3>
+        <p style="font-size:.82rem;margin-top:.5rem;">Menyesuaikan tahap hidup user</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ BENCHMARK ============ -->
-<section id="benchmark">
+<!-- ============ PROBLEM STATEMENT ============ -->
+<section id="problem">
   <div class="wrap">
     <div class="sh reveal" data-anim="up">
-      <div class="eyebrow"><span class="dot"></span>01 Latar Belakang</div>
-      <h2>Bagaimana media &amp; platform global memakainya</h2>
+      <div class="eyebrow"><span class="dot"></span>01 Mengapa Kita Perlu Berubah</div>
+      <p class="lede" style="font-size:1rem;color:var(--muted2);margin-bottom:.6rem;">Tapi kondisi hari ini jauh dari kelima peran itu &mdash; dan dampaknya sudah terlihat.</p>
+      <h2>Push generik sedang menekan engagement, dan mempercepat user pergi</h2>
     </div>
-    <div class="grid bench-grid">
+
+    <div class="funnel-wrap reveal" data-anim="up">
+      <div class="funnel-track">
+        <div class="funnel-stage">
+          <div class="funnel-figures" id="figKirim"></div>
+          <div class="funnel-num">~65</div>
+          <div class="funnel-sub">notif/hari/user</div>
+          <div class="funnel-label"><span class="tag" style="--fig-color:var(--text)">01 · Kirim</span><h4>Ke 3 juta user</h4><p>Konten yang sama disiarkan rata ke seluruh basis user, apa pun minatnya.</p></div>
+        </div>
+        <div class="funnel-stage">
+          <div class="funnel-figures" id="figBuka"></div>
+          <div class="funnel-num">~1.600</div>
+          <div class="funnel-sub">user membuka</div>
+          <div class="funnel-label"><span class="tag" style="--fig-color:var(--amber)">02 · Buka</span><h4>0,05% open rate</h4><p>Dari puluhan push yang dikirim, hanya segelintir yang benar-benar dibuka.</p></div>
+        </div>
+        <div class="funnel-stage">
+          <div class="funnel-figures" id="figAbaikan"></div>
+          <div class="funnel-num">99,5%</div>
+          <div class="funnel-sub">tidak membuka</div>
+          <div class="funnel-label"><span class="tag" style="--fig-color:var(--muted2)">03 · Abaikan</span><h4>Nyaris semua user</h4><p>Mayoritas user membiarkan notifikasi lewat begitu saja, tanpa interaksi.</p></div>
+        </div>
+        <div class="funnel-stage">
+          <div class="funnel-figures" id="figPergi"></div>
+          <div class="funnel-num funnel-num accent">↓</div>
+          <div class="funnel-sub">mute / uninstall</div>
+          <div class="funnel-label"><span class="tag" style="--fig-color:var(--red)">04 · Pergi</span><h4>User lelah, lalu keluar</h4><p>Sebagian user akhirnya mematikan notifikasi atau menghapus aplikasi sama sekali.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="stat-note warn reveal" data-anim="up" style="margin-top:1.4rem;">
+      <div class="kl">Kenapa Ini Berbahaya</div>
+      <p>Open rate yang terlihat kecil sering dianggap "biasa saja" di media digital. Tapi biaya sebenarnya bukan di angka 0,05%-nya — biaya sebenarnya ada di tahap terakhir: user yang lelah dengan notifikasi generik, lalu memilih pergi.</p>
+    </div>
+
+    <div class="decline-wrap reveal" data-anim="up">
+      <h3 style="font-size:1.15rem;margin-bottom:1.6rem;">User base detikcom turun dari waktu ke waktu</h3>
+      <div class="decline-charts">
+        <div class="decline-card">
+          <h4>Monthly Active Users &mdash; iOS</h4>
+          <div class="rng">Mar 2024 – Mar 2026</div>
+          <svg viewBox="0 0 360 190" preserveAspectRatio="none">
+            <line x1="46" y1="15" x2="46" y2="150" stroke="var(--line)" stroke-width="1"/>
+            <line x1="46" y1="150" x2="350" y2="150" stroke="var(--text)" stroke-width="1"/>
+            <line x1="46" y1="15" x2="350" y2="15" stroke="var(--line-soft)" stroke-width="1"/>
+            <line x1="46" y1="57.5" x2="350" y2="57.5" stroke="var(--line-soft)" stroke-width="1"/>
+            <line x1="46" y1="100" x2="350" y2="100" stroke="var(--line-soft)" stroke-width="1"/>
+            <line x1="46" y1="142.5" x2="350" y2="142.5" stroke="var(--line-soft)" stroke-width="1"/>
+            <text x="40" y="19" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--muted2)">200K</text>
+            <text x="40" y="61.5" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--muted2)">150K</text>
+            <text x="40" y="104" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--muted2)">100K</text>
+            <text x="40" y="146.5" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--muted2)">50K</text>
+            <polyline points="46,90 76,78 106,84 136,87 166,93 196,92 226,102 256,105 286,113 320,133" fill="none" stroke="var(--red)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="46" cy="90" r="3.5" fill="var(--red)"/>
+            <circle cx="320" cy="133" r="3.5" fill="var(--red)"/>
+            <text x="46" y="168" text-anchor="start" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--muted2)">Mar '24</text>
+            <text x="320" y="168" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--muted2)">Mar '26</text>
+          </svg>
+          <div class="rng" style="margin-top:.6rem;">±200K &rarr; ±110K user</div>
+        </div>
+        <div class="decline-card">
+          <h4>Monthly Active Users &mdash; Android</h4>
+          <div class="rng">Mar 2024 – Mar 2026</div>
+          <svg viewBox="0 0 360 190" preserveAspectRatio="none">
+            <line x1="46" y1="15" x2="46" y2="150" stroke="var(--line)" stroke-width="1"/>
+            <line x1="46" y1="150" x2="350" y2="150" stroke="var(--text)" stroke-width="1"/>
+            <line x1="46" y1="15" x2="350" y2="15" stroke="var(--line-soft)" stroke-width="1"/>
+            <line x1="46" y1="57.5" x2="350" y2="57.5" stroke="var(--line-soft)" stroke-width="1"/>
+            <line x1="46" y1="100" x2="350" y2="100" stroke="var(--line-soft)" stroke-width="1"/>
+            <line x1="46" y1="142.5" x2="350" y2="142.5" stroke="var(--line-soft)" stroke-width="1"/>
+            <text x="40" y="19" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--muted2)">2,5jt</text>
+            <text x="40" y="61.5" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--muted2)">1,9jt</text>
+            <text x="40" y="104" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--muted2)">1,2jt</text>
+            <text x="40" y="146.5" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--muted2)">0,6jt</text>
+            <polyline points="46,80 66,50 96,63 126,70 156,84 186,79 216,98 246,105 276,117 320,148" fill="none" stroke="var(--red)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="46" cy="80" r="3.5" fill="var(--red)"/>
+            <circle cx="320" cy="148" r="3.5" fill="var(--red)"/>
+            <text x="46" y="168" text-anchor="start" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--muted2)">Mar '24</text>
+            <text x="320" y="168" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--muted2)">Mar '26</text>
+          </svg>
+          <div class="rng" style="margin-top:.6rem;">±2,5jt &rarr; ±1jt user</div>
+        </div>
+      </div>
+      <div class="decline-drop">Dalam 2 tahun terakhir, user aktif bulanan detikcom di iOS &amp; Android turun <b>±1,6 juta pengguna</b>.</div>
+    </div>
+
+    <div class="grid quote-grid reveal" data-anim="up" style="margin-top:2.6rem;">
+      <div class="quote-card">
+        <div class="qhead"><span>★★☆☆☆</span><span class="rating">2/5 · App Store</span></div>
+        <p>"Bisa tidak aplikasinya mengikuti pengaturan notifikasi kami, untuk semua update berita? Notifikasinya <b>sangat mengganggu</b> untuk didengar."</p>
+      </div>
+      <div class="quote-card">
+        <div class="qhead"><span>★★☆☆☆</span><span class="rating">2/5 · Google Play</span></div>
+        <p>"Kurang suka dengan notifikasi berita gosip. Coba adakan <b>fitur minat</b> untuk pengguna, gunakan AI dan machine learning supaya mendapatkan berita yang relevan."</p>
+      </div>
+    </div>
+
+    <div class="stat-note reveal" data-anim="up" style="margin-top:1.4rem;">
+      <div class="kl">Dampaknya Sudah Terlihat di Angka User</div>
+      <p>Notifikasi yang dirasa spammy adalah salah satu keluhan yang berulang di ulasan aplikasi, tepat sebelum user menghapus aplikasinya.</p>
+    </div>
+
+    <div class="sh reveal" data-anim="up" style="margin-top:4rem;">
+      <h3 style="font-size:1.3rem;">Sementara itu, platform lain sudah bergerak lebih dulu — personalisasi kini standar industri</h3>
+    </div>
+<div class="grid bench-grid">
       <div class="card reveal" data-anim="scale">
         <div class="brand-mark" style="--bc:#1DB954"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 16V8"/><path d="M9 19V5"/><path d="M14 14V10"/><path d="M19 17V7"/></svg></div>
         <h3>Spotify</h3>
@@ -628,78 +924,46 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
         <p class="brand-take">Kecepatan &amp; akurasi wajib untuk breaking</p>
       </div>
     </div>
+
+    <div class="cur-source reveal" data-anim="up" style="margin-top:1.6rem;">Sumber: Google Playstore &amp; App Store (internal spreadsheet); Background Riset &amp; Riset Tantangan Push Notifikasi (internal)</div>
   </div>
 </section>
 
-
-<section id="objectives">
-  <div class="wrap">
-    <div class="sh reveal" data-anim="up">
-      <div class="eyebrow"><span class="dot"></span>01 Tujuan</div>
-      <h2>Objective framework</h2>
-      <p class="lede">Tiga kelompok metrik yang saling menopang: engagement mendorong pertumbuhan, pertumbuhan menopang kebiasaan &amp; retensi.</p>
-    </div>
-    <div class="obj-flow">
-      <div class="obj-cluster reveal" data-anim="left">
-        <h4>Engagement</h4>
-        <div class="obj-pills">
-          <span class="obj-pill"><span class="arrow">↑</span> CTR</span>
-          <span class="obj-pill"><span class="arrow">↑</span> Open Rate</span>
-        </div>
-      </div>
-      <div class="obj-connector reveal" data-anim="scale">→</div>
-      <div class="obj-cluster reveal" data-anim="up">
-        <h4>Growth</h4>
-        <div class="obj-pills">
-          <span class="obj-pill"><span class="arrow">↑</span> DAU</span>
-          <span class="obj-pill"><span class="arrow">↑</span> Session</span>
-        </div>
-      </div>
-      <div class="obj-connector reveal" data-anim="scale">→</div>
-      <div class="obj-cluster reveal" data-anim="right">
-        <h4>Habit &amp; Retention</h4>
-        <div class="obj-pills">
-          <span class="obj-pill"><span class="arrow">↑</span> Habit</span>
-          <span class="obj-pill"><span class="arrow">↑</span> Retention</span>
-          <span class="obj-pill"><span class="arrow">↑</span> PV/User</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PRINCIPLES (radial wheel) ============ -->
+<!-- ============ PRINCIPLES (zigzag rows) ============ -->
 <section id="principles">
   <div class="wrap">
     <div class="sh reveal" data-anim="up">
-      <div class="eyebrow"><span class="dot"></span>02 Prinsip Inti</div>
+      <div class="eyebrow"><span class="dot"></span>02 Strategi: Prinsip &amp; Framework</div>
       <h2>Enam prinsip push notification</h2>
     </div>
-    <div class="prin-wheel">
-      <div class="prin-center reveal" data-anim="scale">6 Prinsip<br>Right Push</div>
-      <div class="prin-node pn1 reveal" data-anim="up">
-        <div class="prin-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/></svg></div>
-        <div class="prin-tag">User</div><h3>Right User</h3><p>Kirim ke user yang relevan dengan preferensi &amp; perilakunya</p>
+    <div class="prin-zigzag">
+      <div class="prin-zig-row">
+        <div class="prin-zig-node reveal" data-anim="up">
+          <div class="prin-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/></svg></div>
+          <div class="prin-tag">01 · User</div><h3>Right User</h3><p>Kirim ke user yang relevan dengan preferensi &amp; perilakunya</p>
+        </div>
+        <div class="prin-zig-node reveal" data-anim="up" data-delay="1">
+          <div class="prin-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6V3Z"/><path d="M9 10h6M9 13h6M9 16h4"/></svg></div>
+          <div class="prin-tag">02 · Konten</div><h3>Right Content</h3><p>Konten sesuai minat, bukan sekadar konten yang tersedia</p>
+        </div>
+        <div class="prin-zig-node reveal" data-anim="up" data-delay="2">
+          <div class="prin-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></div>
+          <div class="prin-tag">03 · Waktu</div><h3>Right Time</h3><p>Dikirim saat probabilitas dibuka &amp; dibaca paling tinggi</p>
+        </div>
       </div>
-      <div class="prin-node pn2 reveal" data-anim="right">
-        <div class="prin-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6V3Z"/><path d="M9 10h6M9 13h6M9 16h4"/></svg></div>
-        <div class="prin-tag">Konten</div><h3>Right Content</h3><p>Konten sesuai minat, bukan sekadar konten yang tersedia</p>
-      </div>
-      <div class="prin-node pn3 reveal" data-anim="right">
-        <div class="prin-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></div>
-        <div class="prin-tag">Waktu</div><h3>Right Time</h3><p>Dikirim saat probabilitas dibuka &amp; dibaca paling tinggi</p>
-      </div>
-      <div class="prin-node pn4 reveal" data-anim="up">
-        <div class="prin-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-6 3 12 2-9 2 5h7"/></svg></div>
-        <div class="prin-tag">Frekuensi</div><h3>Right Frequency</h3><p>Volume terjaga agar tidak memicu fatigue atau uninstall</p>
-      </div>
-      <div class="prin-node pn5 reveal" data-anim="left">
-        <div class="prin-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18"/><path d="M5 4h11l-2.5 3.5L16 11H5"/></svg></div>
-        <div class="prin-tag">Prioritas</div><h3>Right Priority</h3><p>Urgensi konten menentukan urutan &amp; cara pengiriman</p>
-      </div>
-      <div class="prin-node pn6 reveal" data-anim="left">
-        <div class="prin-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.2"/></svg></div>
-        <div class="prin-tag">Konteks</div><h3>Right Context</h3><p>Mempertimbangkan situasi user: lokasi, waktu, aktivitas</p>
+      <div class="prin-zig-row row-down">
+        <div class="prin-zig-node reveal" data-anim="up">
+          <div class="prin-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-6 3 12 2-9 2 5h7"/></svg></div>
+          <div class="prin-tag">04 · Frekuensi</div><h3>Right Frequency</h3><p>Volume terjaga agar tidak memicu fatigue atau uninstall</p>
+        </div>
+        <div class="prin-zig-node reveal" data-anim="up" data-delay="1">
+          <div class="prin-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18"/><path d="M5 4h11l-2.5 3.5L16 11H5"/></svg></div>
+          <div class="prin-tag">05 · Prioritas</div><h3>Right Priority</h3><p>Urgensi konten menentukan urutan &amp; cara pengiriman</p>
+        </div>
+        <div class="prin-zig-node reveal" data-anim="up" data-delay="2">
+          <div class="prin-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.2"/></svg></div>
+          <div class="prin-tag">06 · Konteks</div><h3>Right Context</h3><p>Mempertimbangkan situasi user: lokasi, waktu, aktivitas</p>
+        </div>
       </div>
     </div>
   </div>
@@ -709,8 +973,8 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 <section id="categories">
   <div class="wrap">
     <div class="sh reveal" data-anim="up">
-      <div class="eyebrow"><span class="dot"></span>02 Framework Konten</div>
-      <h2>Enam kategori push notification detikcom</h2>
+      <div class="eyebrow"><span class="dot"></span>02 Strategi: Prinsip &amp; Framework</div>
+      <h2>Lima kategori push notification detikcom</h2>
       <p class="lede">Setiap kategori punya tujuan, pemicu, dan gaya penulisan berbeda. Geser layar untuk melihat tampilannya di lockscreen user.</p>
     </div>
 
@@ -723,7 +987,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
               <div class="phone-date">Rabu, 29 Juli</div>
               <div class="phone-notif" id="catNotif" style="--tier-color:var(--red)">
                 <div class="notif-head"><span class="notif-app">detikcom</span><span class="notif-when">baru saja</span></div>
-                <div class="notif-title" id="catTitle">🔴 BREAKING: Gempa M 6,8 Guncang Jabar</div>
+                <div class="notif-title" id="catTitle">BREAKING: Gempa 6,8 Guncang Jabar</div>
                 <div class="notif-body" id="catBody">BMKG: Tidak berpotensi tsunami.</div>
               </div>
             </div>
@@ -732,7 +996,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
       </div>
 
       <div class="steps">
-        <div class="step" data-color="var(--red)" data-title="🔴 BREAKING: Gempa M 6,8 Guncang Jabar" data-body="BMKG: Tidak berpotensi tsunami.">
+        <div class="step" data-color="var(--red)" data-title="BREAKING: Gempa 6,8 Guncang Jabar" data-body="BMKG: Tidak berpotensi tsunami.">
           <div class="tag">A: Breaking News</div>
           <h3>Kecepatan &amp; akurasi</h3>
           <p>Berita penting &amp; mendesak yang harus segera diketahui user, dikirim otomatis dari sistem editorial. Fokus pada kejadian utama, tanpa sapaan personal.</p>
@@ -754,7 +1018,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
           </div>
         </div>
 
-        <div class="step" data-color="var(--teal)" data-title="☀️ Morning Brief" data-body="Selamat pagi, Rizki! 5 berita penting yang perlu kamu tahu hari ini.">
+        <div class="step" data-color="var(--violet)" data-title="☀️ Morning Brief" data-body="Selamat pagi, Rizki! 5 berita penting yang perlu kamu tahu hari ini.">
           <div class="tag">C: Push Habit</div>
           <h3>Ritme harian konsisten</h3>
           <p>Push terjadwal yang membentuk ritme baca harian, tujuannya menjadikan detikcom kebiasaan. Boleh pakai nama user, tone friendly &amp; conversational.</p>
@@ -765,36 +1029,26 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
           </div>
         </div>
 
-        <div class="step" data-color="var(--violet)" data-title="🔄 Update Kasus Korupsi Terbaru" data-body="Tersangka resmi ditahan malam ini.">
-          <div class="tag">D: Push Continuity</div>
-          <h3>Update isu berkembang</h3>
-          <p>Memberi tahu perkembangan baru dari isu yang sedang diikuti user, menyambung sesi baca yang terputus. Tanpa sapaan personal.</p>
+        <div class="step" data-color="var(--green)" data-title="🔄 Rizki, Ini Lanjutan Berita yang Kamu Ikuti" data-body="Update terbaru kasus korupsi yang sedang kamu ikuti.">
+          <div class="tag">D: Push Personal</div>
+          <h3>Konten paling relevan by history &amp; minat</h3>
+          <p>Push berbasis histori baca &amp; minat individual user, termasuk kelanjutan artikel/topik yang belum tuntas dan rekomendasi sesuai preferensi. Wajib pakai nama, jangan terdengar seperti broadcast massal.</p>
           <div class="facts">
-            <div><b>Trigger</b>Artikel belum selesai, video belum tuntas, topik ada update</div>
-            <div><b>Flow</b>Satu push relevan setelah jeda tertentu, bukan menagih berulang</div>
-            <div><b>Sifat</b>Berbasis titik henti &amp; perkembangan isu individual</div>
-          </div>
-        </div>
-
-        <div class="step" data-color="var(--green)" data-title="⚽ Rizki, Timnas Main Malam Ini!" data-body="Cek jadwal, prediksi, dan kabar terbaru skuad Garuda.">
-          <div class="tag">E: Push Personal</div>
-          <h3>Berbasis histori individu</h3>
-          <p>Push yang dipicu langsung oleh aktivitas dan minat personal user, paling relevan, paling individual. Wajib pakai nama, jangan terdengar seperti broadcast massal.</p>
-          <div class="facts">
-            <div><b>Sosial</b>Komentar dibalas, author favorit</div>
-            <div><b>Minat</b>Topik &amp; kanal favorit, bookmark/history</div>
-            <div><b>Milestone</b>Achievement &amp; badge, personal milestone</div>
+            <div><b>Trigger</b>Artikel/video belum tuntas, topik yang diikuti ada update, atau sesuai histori &amp; minat baca</div>
+            <div><b>Sifat</b>Personalisasi konten murni, bukan aktivitas sosial (bukan like/komentar)</div>
+            <div><b>Flow</b>Satu push relevan setelah jeda tertentu, misal ada artikel baru terkait fokus tim favorit</div>
+            <div><b>Contoh</b>Kelanjutan isu, rekomendasi topik favorit, artikel sesuai bookmark/history</div>
           </div>
         </div>
 
         <div class="step" data-color="var(--promo)" data-title="🎁 Rizki, Jangan Lewatkan Event Terbaru!" data-body="Daftar sekarang, kuota terbatas untuk event spesial minggu ini.">
-          <div class="tag">F: Promo Push</div>
+          <div class="tag">E: Promo Push</div>
           <h3>Mendorong aksi tertentu</h3>
           <p>Mendorong user melakukan aksi spesifik: aktivasi fitur, ajakan langganan, atau penawaran. Fokus pada benefit &amp; CTA yang jelas, nama user opsional.</p>
           <div class="facts">
             <div><b>Kapan digunakan</b>Aktivasi fitur, growth campaign, penawaran terbatas</div>
-            <div><b>Prioritas</b>P6, terendah, pertama dipangkas saat konflik jadwal</div>
-            <div><b>Catatan</b>Tunduk pada rate limit ketat agar tidak terasa spam</div>
+            <div><b>Prioritas</b>P5, terendah dari sisi konten; punya jalur &amp; batas tersendiri</div>
+            <div><b>Catatan</b>Tidak lagi bagian dari budget harian per user</div>
           </div>
         </div>
       </div>
@@ -806,17 +1060,16 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 <section id="priority">
   <div class="wrap">
     <div class="sh reveal" data-anim="up">
-      <div class="eyebrow"><span class="dot"></span>03 Prioritas</div>
+      <div class="eyebrow"><span class="dot"></span>03 Strategi: Prioritas</div>
       <h2>Notification priority hierarchy</h2>
       <p class="lede">Semakin tinggi urgensi &amp; personal relevansi konten, semakin tinggi prioritas pengiriman push.</p>
     </div>
     <div class="pri-list">
       <div class="pri-row reveal" data-anim="left"><div class="pri-p">P1</div><div class="pri-bar" style="--pc:var(--red)"><h4>Breaking News</h4><span>Urgensi tertinggi, boleh override cap &amp; quiet hour</span></div></div>
-      <div class="pri-row reveal" data-anim="left"><div class="pri-p">P2</div><div class="pri-bar" style="--pc:var(--green)"><h4>Push Personal</h4><span>Relevansi individual, dorong loyalitas &amp; engagement</span></div></div>
-      <div class="pri-row reveal" data-anim="left"><div class="pri-p">P3</div><div class="pri-bar" style="--pc:var(--violet)"><h4>Push Continuity</h4><span>Menjaga kelanjutan sesi yang sudah dimulai user</span></div></div>
-      <div class="pri-row reveal" data-anim="left"><div class="pri-p">P4</div><div class="pri-bar" style="--pc:var(--teal)"><h4>Push Habit</h4><span>Membangun ritme, tapi tidak mendesak per momen</span></div></div>
-      <div class="pri-row reveal" data-anim="left"><div class="pri-p">P5</div><div class="pri-bar" style="--pc:var(--amber)"><h4>Editorial Push</h4><span>Kurasi tambahan, paling fleksibel untuk digeser jadwalnya</span></div></div>
-      <div class="pri-row reveal" data-anim="left"><div class="pri-p">P6</div><div class="pri-bar" style="--pc:var(--promo)"><h4>Promo Push</h4><span>Prioritas terendah, pertama dipangkas saat konflik jadwal atau fatigue</span></div></div>
+      <div class="pri-row reveal" data-anim="left"><div class="pri-p">P2</div><div class="pri-bar" style="--pc:var(--green)"><h4>Push Personal</h4><span>Relevansi individual &amp; kelanjutan sesi (histori/minat, bukan sosial), dorong loyalitas &amp; engagement</span></div></div>
+      <div class="pri-row reveal" data-anim="left"><div class="pri-p">P3</div><div class="pri-bar" style="--pc:var(--violet)"><h4>Push Habit</h4><span>Membangun ritme, tapi tidak mendesak per momen</span></div></div>
+      <div class="pri-row reveal" data-anim="left"><div class="pri-p">P4</div><div class="pri-bar" style="--pc:var(--amber)"><h4>Editorial Push</h4><span>Kurasi tambahan, paling fleksibel untuk digeser jadwalnya</span></div></div>
+      <div class="pri-row reveal" data-anim="left"><div class="pri-p">P5</div><div class="pri-bar" style="--pc:var(--promo)"><h4>Promo Push</h4><span>Prioritas terendah dari sisi konten; punya budget &amp; governance sendiri, terpisah dari 4 kategori di atas</span></div></div>
     </div>
   </div>
 </section>
@@ -825,7 +1078,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 <section id="engine">
   <div class="wrap">
     <div class="sh reveal" data-anim="up">
-      <div class="eyebrow"><span class="dot"></span>04 Decision &amp; Delivery Engine</div>
+      <div class="eyebrow"><span class="dot"></span>04 Strategi: Decision Engine</div>
       <h2>Siapa, konten apa, kapan</h2>
       <p class="lede">Empat kelompok sinyal masuk ke Decision Engine untuk menentukan siapa penerima, konten apa, dan jam berapa dikirim.</p>
     </div>
@@ -838,46 +1091,149 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
   </div>
 </section>
 
+<!-- ============ TARGETING ILLUSTRATION ============ -->
+<section id="targeting">
+  <div class="wrap">
+    <div class="sh reveal" data-anim="up">
+      <div class="eyebrow"><span class="dot"></span>04 Strategi: Decision Engine</div>
+      <h2>Ilustrasi: dari broadcast ke distribusi sesuai niche</h2>
+    </div>
+
+    <div class="niche-compare reveal" data-anim="up">
+
+      <div class="niche-col existing">
+        <div class="niche-col-head">
+          <span class="niche-col-tag">Sekarang</span>
+          <p>Tiap artikel disiarkan rata ke seluruh 3.000.000 user, apa pun nichenya.</p>
+        </div>
+        <div class="niche-rows">
+          <div class="niche-row">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/></svg></div>
+            <div class="niche-row-body"><div class="niche-row-top"><h4>"DPR Sahkan RUU APBN 2027, Ini Rinciannya"</h4><span class="v">100%</span></div><div class="niche-bar-track"><div class="niche-bar-fill" style="width:100%"></div></div></div>
+          </div>
+          <div class="niche-row">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M5 4h14l-1 6a6 6 0 0 1-12 0L5 4Z"/><path d="M5 6H3a3 3 0 0 0 3 3M19 6h2a3 3 0 0 1-3 3"/></svg></div>
+            <div class="niche-row-body"><div class="niche-row-top"><h4>"Timnas Menang 3-0, Lolos ke Final"</h4><span class="v">100%</span></div><div class="niche-bar-track"><div class="niche-bar-fill" style="width:100%"></div></div></div>
+          </div>
+          <div class="niche-row">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg></div>
+            <div class="niche-row-body"><div class="niche-row-top"><h4>"HP Baru Rilis, Ini Spesifikasi Lengkapnya"</h4><span class="v">100%</span></div><div class="niche-bar-track"><div class="niche-bar-fill" style="width:100%"></div></div></div>
+          </div>
+          <div class="niche-row">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z"/><path d="M12 6v6l3 2"/></svg></div>
+            <div class="niche-row-body"><div class="niche-row-top"><h4>"5 Kebiasaan Pagi agar Lebih Bugar Seharian"</h4><span class="v">100%</span></div><div class="niche-bar-track"><div class="niche-bar-fill" style="width:100%"></div></div></div>
+          </div>
+          <div class="niche-row">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div>
+            <div class="niche-row-body"><div class="niche-row-top"><h4>"Konser Reuni Band Legendaris, Tiket Ludes"</h4><span class="v">100%</span></div><div class="niche-bar-track"><div class="niche-bar-fill" style="width:100%"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="niche-mid">→</div>
+
+      <div class="niche-col expect">
+        <div class="niche-col-head">
+          <span class="niche-col-tag">Ekspektasi</span>
+          <p>Decision Engine menyalurkan tiap artikel hanya ke user yang relevan dengan nichenya.</p>
+        </div>
+        <div class="niche-rows">
+          <div class="niche-row">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/></svg></div>
+            <div class="niche-row-body"><div class="niche-row-top"><h4>"DPR Sahkan RUU APBN 2027, Ini Rinciannya"</h4><span class="v">≈20%</span></div><div class="niche-bar-track"><div class="niche-bar-fill" style="width:20%"></div></div></div>
+          </div>
+          <div class="niche-row">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M5 4h14l-1 6a6 6 0 0 1-12 0L5 4Z"/><path d="M5 6H3a3 3 0 0 0 3 3M19 6h2a3 3 0 0 1-3 3"/></svg></div>
+            <div class="niche-row-body"><div class="niche-row-top"><h4>"Timnas Menang 3-0, Lolos ke Final"</h4><span class="v">≈15%</span></div><div class="niche-bar-track"><div class="niche-bar-fill" style="width:15%"></div></div></div>
+          </div>
+          <div class="niche-row">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg></div>
+            <div class="niche-row-body"><div class="niche-row-top"><h4>"HP Baru Rilis, Ini Spesifikasi Lengkapnya"</h4><span class="v">≈17%</span></div><div class="niche-bar-track"><div class="niche-bar-fill" style="width:17%"></div></div></div>
+          </div>
+          <div class="niche-row">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z"/><path d="M12 6v6l3 2"/></svg></div>
+            <div class="niche-row-body"><div class="niche-row-top"><h4>"5 Kebiasaan Pagi agar Lebih Bugar Seharian"</h4><span class="v">≈18%</span></div><div class="niche-bar-track"><div class="niche-bar-fill" style="width:18%"></div></div></div>
+          </div>
+          <div class="niche-row">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div>
+            <div class="niche-row-body"><div class="niche-row-top"><h4>"Konser Reuni Band Legendaris, Tiket Ludes"</h4><span class="v">≈23%</span></div><div class="niche-bar-track"><div class="niche-bar-fill" style="width:23%"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="stat-note reveal" data-anim="up">
+      <div class="kl">Insight Utama</div>
+      <p>Pergeserannya bukan pada jumlah artikel, tapi pada <b>siapa yang menerimanya</b>. Persentase di atas adalah contoh ilustratif, bukan angka final.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ SEGMENTATION + GOVERNANCE (merged) ============ -->
 <section id="segmentation">
   <div class="wrap">
     <div class="sh reveal" data-anim="up">
-      <div class="eyebrow"><span class="dot"></span>05 Segmentasi &amp; Governance</div>
-      <h2>Segmentasi &amp; governance push</h2>
-      <p class="lede">Budget harian dan bauran kategori disesuaikan dengan karakteristik tiap segmen, dijaga oleh aturan governance yang sama untuk semua. Angka di bawah ini adalah budget kategori per segmen, di luar Breaking News, yang selalu +2/hari untuk seluruh segmen (lihat ilustrasi jadwal di bagian bawah untuk totalnya).</p>
+      <div class="eyebrow"><span class="dot"></span>05 Strategi: Segmentasi &amp; Governance</div>
+      <h2>Siapa menerima apa</h2>
+      <p class="lede">Budget di bawah ini khusus konten berita/artikel — di luar Breaking News (selalu +2/hari) dan Push Promo (jalur terpisah).</p>
     </div>
-    <div class="grid seg-grid">
-      <div class="card reveal" data-anim="scale">
-        <div class="seg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="3.2"/><path d="M3.5 20c1-3.4 3.6-5.2 6.5-5.2s5.5 1.8 6.5 5.2"/><path d="M18 8h4M20 6v4"/></svg></div>
-        <div class="top"><h3>New User</h3><div class="seg-budget">6<small>push/hari, di luar Breaking</small></div></div>
-        <p>Baru install, minim histori.</p>
-        <div class="seg-mix"><span class="chip c-habit">Habit</span><span class="chip c-editorial">Editorial</span><span class="chip c-promo">Promo</span></div>
-        <p>Onboarding, bangun ritme &amp; kenalkan fitur lewat promo ringan.</p>
+    <div class="cs-steps" style="max-width:100%;">
+      <div class="cs-stepnum reveal" data-anim="up">
+        <div class="big neutral">6</div>
+        <div class="capwrap"><h4>New User</h4><p>Baru install, minim histori. Mix: Habit + Editorial. Fokus onboarding & bangun ritme baca.</p></div>
       </div>
-      <div class="card reveal" data-anim="scale">
-        <div class="seg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 14h6l-1 7 8-11h-6l1-7Z"/></svg></div>
-        <div class="top"><h3>Engaged User</h3><div class="seg-budget">10<small>push/hari, di luar Breaking</small></div></div>
-        <p>Sesi rutin, interaksi &amp; personalisasi terbentuk.</p>
-        <div class="seg-mix"><span class="chip c-habit">Habit</span><span class="chip c-editorial">Editorial</span><span class="chip c-continuity">Continuity</span><span class="chip c-personal">Personal</span></div>
-        <p>Fokus personalisasi &amp; kelanjutan sesi, minim promo.</p>
+      <div class="cs-stepnum reveal" data-anim="up">
+        <div class="big neutral">10</div>
+        <div class="capwrap"><h4>Engaged User</h4><p>Sesi rutin, interaksi mulai terbentuk. Mix: Habit + Editorial + Personal. Fokus personalisasi & kelanjutan sesi.</p></div>
       </div>
-      <div class="card reveal" data-anim="scale">
-        <div class="seg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg></div>
-        <div class="top"><h3>Active User</h3><div class="seg-budget">15<small>push/hari, di luar Breaking</small></div></div>
-        <p>Volume tertinggi, buka aplikasi hampir tiap window.</p>
-        <div class="seg-mix"><span class="chip c-habit">Habit</span><span class="chip c-editorial">Editorial</span><span class="chip c-continuity">Continuity</span><span class="chip c-personal">Personal</span><span class="chip c-promo">Promo</span></div>
-        <p>Semua kategori aktif, toleransi volume paling tinggi.</p>
+      <div class="cs-stepnum reveal" data-anim="up">
+        <div class="big neutral">15</div>
+        <div class="capwrap"><h4>Active User</h4><p>Volume tertinggi, buka aplikasi hampir tiap window. Semua kategori konten aktif, toleransi volume paling tinggi.</p></div>
       </div>
-      <div class="card reveal" data-anim="scale">
-        <div class="seg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></div>
-        <div class="top"><h3>Dormant User</h3><div class="seg-budget">1–2<small>push/hari, di luar Breaking</small></div></div>
-        <p>Tidak buka dalam beberapa hari hingga berbulan.</p>
-        <div class="seg-mix"><span class="chip c-personal">Personal</span><span class="chip c-promo">Promo</span></div>
-        <p>Re-engagement bertahap, insentif, volume minim (lihat strategi dormant di bawah).</p>
+      <div class="cs-stepnum reveal" data-anim="up">
+        <div class="big">1–2</div>
+        <div class="capwrap"><h4>Dormant User</h4><p>Tidak buka dalam beberapa hari hingga berbulan. Mix: Personal saja, re-engagement bertahap dengan volume minim.</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DORMANT ============ -->
+<section id="dormant">
+  <div class="wrap">
+    <div class="sh reveal" data-anim="up">
+      <div class="eyebrow"><span class="dot"></span>05 Strategi: Segmentasi &amp; Governance</div>
+      <h2>Dormant user re-engagement strategy</h2>
+      <p class="lede">Dihitung per user, bukan blast bersama. Setiap tahap dipicu dari tanggal terakhir user itu sendiri aktif, jadi tiap user berjalan di jam &amp; hari-nya masing-masing.</p>
+    </div>
+    <div class="stage-track">
+      <div class="stage-line"></div>
+      <div class="stages">
+        <div class="stage reveal" data-anim="up"><div class="dotmark"></div><h4>3 Hari</h4><div class="stage-since">sejak user terakhir aktif</div><p>Reminder ringan, sama seperti habit. Tanpa insentif.</p><div class="cta">"Ini berita yang mungkin kamu lewatkan hari ini"</div></div>
+        <div class="stage reveal d1" data-anim="up"><div class="dotmark"></div><h4>7 Hari</h4><div class="stage-since">sejak user terakhir aktif</div><p>Highlight topik favorit, 1x/hari. Tanpa insentif.</p><div class="cta">"Topik yang kamu ikuti masih ramai dibahas"</div></div>
+        <div class="stage reveal d2" data-anim="up"><div class="dotmark"></div><h4>14 Hari</h4><div class="stage-since">sejak user terakhir aktif</div><p>Kurasi konten personal, 1x/2 hari + konten eksklusif.</p><div class="cta">"Rangkuman pilihan redaksi untukmu"</div></div>
+        <div class="stage reveal d3" data-anim="up"><div class="dotmark"></div><h4>30 Hari</h4><div class="stage-since">sejak user terakhir aktif</div><p>Win-back campaign, 2x/minggu. Insentif ringan dikirim lewat Push Promo (cluster targeting), bukan budget Personal.</p><div class="cta">"Berita-berita besar bulan ini yang perlu kamu tahu"</div></div>
+        <div class="stage reveal d4" data-anim="up"><div class="dotmark"></div><h4>90 Hari</h4><div class="stage-since">sejak user terakhir aktif</div><p>Reaktivasi terakhir, 1x/minggu. Insentif signifikan dikirim lewat Push Promo (cluster targeting), bukan budget Personal.</p><div class="cta">"Ringkasan berita utama selama kamu tidak aktif"</div></div>
+      </div>
+    </div>
+    <div class="stat-note reveal" data-anim="up" style="margin-top:2.4rem;">
+      <div class="kl">Cara kerjanya</div>
+      <p>Setiap user punya "jam dormant"-nya sendiri, dihitung sejak tanggal terakhir dia aktif. Begitu ambang hari terlampaui tanpa aktivitas, dia otomatis naik ke tahap berikutnya. <b>Begitu user kembali aktif kapan pun, journey ini langsung berhenti</b> dan dia kembali ke treatment normal sesuai segmennya, bukan dilanjutkan atau diulang. Kalau sampai 90 hari tetap tidak kembali, dia tidak terus di-recall berulang, frekuensinya diturunkan ke budget minimum Dormant (1–2 push/hari) sampai ada sinyal baru yang mengaktifkannya lagi.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GOVERNANCE ============ -->
+<section id="governance">
+  <div class="wrap">
+    <div class="sh reveal" data-anim="up">
+      <div class="eyebrow"><span class="dot"></span>05 Strategi: Segmentasi &amp; Governance</div>
+      <h2>Menjaga volume agar tidak memicu fatigue</h2>
+      <p class="lede">Aturan yang sama berlaku untuk seluruh kategori: jeda antar push, jam kirim, jam senyap, hingga proses approval.</p>
     </div>
 
-    <div class="gov-sub reveal" data-anim="clip">
+<div class="gov-sub reveal" data-anim="clip">
       <h3>Notification spacing: jeda minimum antar push</h3>
       <table class="spacing">
         <tr><th>Kombinasi berurutan</th><th>Jeda minimum</th><th>Alasan UX</th></tr>
@@ -886,7 +1242,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
         <tr><td>Editorial → Editorial</td><td class="gap">45 menit</td><td>Cegah kelelahan kurasi topik serupa</td></tr>
         <tr><td>Habit → Editorial</td><td class="gap">30 menit</td><td>Jaga ritme habit tidak tertutup konten lain</td></tr>
         <tr><td>Habit → Personal</td><td class="gap">20 menit</td><td>Personal tetap terasa khusus, bukan tumpukan</td></tr>
-        <tr><td>Continuity → Habit</td><td class="gap">25 menit</td><td>Hindari dua ajakan buka app berdekatan</td></tr>
+        <tr><td>Personal → Habit</td><td class="gap">25 menit</td><td>Hindari dua ajakan buka app berdekatan</td></tr>
         <tr><td>Promo → Promo</td><td class="gap">240 menit</td><td>Cegah kesan spam penawaran</td></tr>
         <tr><td>Editorial → Promo</td><td class="gap">30 menit</td><td>Pisahkan konten editorial dari penawaran</td></tr>
       </table>
@@ -895,13 +1251,14 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
     <div class="gov-sub">
       <h3 class="reveal" data-anim="up">Daily notification window</h3>
       <div class="window-strip reveal" data-anim="scale">
-        <div class="window-block"><h5>Morning</h5><div class="t">06.00–09.00</div><div class="wb-tags"><span class="wtag" style="--wc:var(--teal)">Habit</span><span class="wtag" style="--wc:var(--red)">Breaking</span></div><p>ringkas &amp; informatif</p></div>
+        <div class="window-block"><h5>Morning</h5><div class="t">06.00–09.00</div><div class="wb-tags"><span class="wtag" style="--wc:var(--violet)">Habit</span><span class="wtag" style="--wc:var(--red)">Breaking</span></div><p>ringkas &amp; informatif</p></div>
         <div class="window-block"><h5>Information</h5><div class="t">09.00–12.00</div><div class="wb-tags"><span class="wtag" style="--wc:var(--amber)">Editorial</span><span class="wtag" style="--wc:var(--red)">Breaking</span></div><p>fokus produktif</p></div>
-        <div class="window-block"><h5>Midday</h5><div class="t">12.00–14.00</div><div class="wb-tags"><span class="wtag" style="--wc:var(--teal)">Habit</span><span class="wtag" style="--wc:var(--green)">Personal</span></div><p>santai, jeda istirahat</p></div>
-        <div class="window-block"><h5>Development</h5><div class="t">14.00–18.00</div><div class="wb-tags"><span class="wtag" style="--wc:var(--amber)">Editorial</span><span class="wtag" style="--wc:var(--violet)">Continuity</span><span class="wtag" style="--wc:var(--promo)">Promo</span></div><p>aktif, eksploratif</p></div>
-        <div class="window-block"><h5>Evening</h5><div class="t">18.00–21.00</div><div class="wb-tags"><span class="wtag" style="--wc:var(--teal)">Habit</span><span class="wtag" style="--wc:var(--green)">Personal</span><span class="wtag" style="--wc:var(--amber)">Editorial</span><span class="wtag" style="--wc:var(--promo)">Promo</span></div><p>rileks</p></div>
+        <div class="window-block"><h5>Midday</h5><div class="t">12.00–14.00</div><div class="wb-tags"><span class="wtag" style="--wc:var(--violet)">Habit</span><span class="wtag" style="--wc:var(--green)">Personal</span></div><p>santai, jeda istirahat</p></div>
+        <div class="window-block"><h5>Development</h5><div class="t">14.00–18.00</div><div class="wb-tags"><span class="wtag" style="--wc:var(--amber)">Editorial</span><span class="wtag" style="--wc:var(--green)">Personal</span></div><p>aktif, eksploratif</p></div>
+        <div class="window-block"><h5>Evening</h5><div class="t">18.00–21.00</div><div class="wb-tags"><span class="wtag" style="--wc:var(--violet)">Habit</span><span class="wtag" style="--wc:var(--green)">Personal</span><span class="wtag" style="--wc:var(--amber)">Editorial</span></div><p>rileks</p></div>
         <div class="window-block"><h5>Quiet Hour</h5><div class="t">21.00–06.00</div><div class="wb-tags"><span class="wtag" style="--wc:var(--red)">Breaking</span></div><p>hanya override</p></div>
       </div>
+      <p class="sched-note" style="margin-top:1rem;">Push Promo tidak masuk window di atas karena governance-nya terpisah, namun waktu kirimnya tetap mengikuti window Development &amp; Evening (sore–malam) — lihat bagian Push Promo.</p>
     </div>
 
     <div class="gov-sub">
@@ -919,7 +1276,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 
       <div class="rules-subhead reveal" data-anim="left"><span class="tagpill sys">Aturan Sistem</span><span class="desc">Berjalan otomatis, tanpa intervensi manual per pengiriman</span></div>
       <div class="grid rules-grid">
-        <div class="card sys reveal" data-anim="pop"><div class="num">01</div><h3>Rate Limit Editorial &amp; Promo</h3><p>Maksimum push editorial &amp; promo per jam ditentukan &amp; dimonitor otomatis oleh sistem</p></div>
+        <div class="card sys reveal" data-anim="pop"><div class="num">01</div><h3>Rate Limit Editorial</h3><p>Maksimum push editorial per jam ditentukan &amp; dimonitor otomatis oleh sistem (Push Promo punya cap sendiri, lihat bagian Push Promo)</p></div>
         <div class="card sys reveal" data-anim="pop"><div class="num">02</div><h3>Breaking Override</h3><p>Breaking news otomatis melewati semua batasan standar (cap, spacing, quiet hour)</p></div>
         <div class="card sys reveal" data-anim="pop"><div class="num">03</div><h3>Deduplication</h3><p>Sistem otomatis mencegah user menerima push dengan konten duplikat</p></div>
       </div>
@@ -933,15 +1290,14 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
     </div>
 
     <div class="sched-wrap">
-      <h3>Ilustrasi jadwal harian per segmen</h3>
-      <p class="lede">Breaking News diasumsikan dikirim pada jam yang sama untuk seluruh user, di luar budget kategori lain. Total notifikasi = budget segmen + 2 Breaking. Dormant diilustrasikan pada titik atas rentang (2).</p>
+      <h3>Ilustrasi jadwal harian per segmen (konten + Breaking + Promo)</h3>
+      <p class="lede">Breaking News &amp; Push Promo tetap berada di luar budget konten, tapi kini sama-sama ditampilkan dalam satu jadwal harian agar gambarannya utuh. Total notifikasi = budget segmen (konten) + 1 Breaking + 1 Promo. Budget konten sendiri (Habit/Editorial/Personal) tidak berubah — hanya slot Breaking &amp; Promo yang kini terlihat eksplisit. Dormant diilustrasikan pada titik atas rentang (2).</p>
       <div class="sched-legend">
         <span class="lg"><span class="sw" style="background:var(--red)">B</span>Breaking</span>
         <span class="lg"><span class="sw" style="background:var(--amber)">E</span>Editorial</span>
-        <span class="lg"><span class="sw" style="background:var(--teal)">H</span>Habit</span>
-        <span class="lg"><span class="sw" style="background:var(--violet)">C</span>Continuity</span>
+        <span class="lg"><span class="sw" style="background:var(--violet)">H</span>Habit</span>
         <span class="lg"><span class="sw" style="background:var(--green)">P</span>Personal</span>
-        <span class="lg"><span class="sw" style="background:var(--promo)">🎁</span>Promo</span>
+        <span class="lg"><span class="sw" style="background:var(--promo)">Pr</span>Promo</span>
       </div>
       <div class="sched-table">
       <div class="sched-header">
@@ -950,81 +1306,105 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
       </div>
 
       <div class="sched-row reveal" data-anim="up">
-        <div class="sched-seg"><h4>New User</h4><div class="bg">6 budget + 2 Breaking = 8</div></div>
+        <div class="sched-seg"><h4>New User</h4><div class="bg">6 budget + 1 Breaking + 1 Promo = 8</div></div>
         <div class="sched-track">
-          <div class="sched-window"><span class="chip-sm" style="--cc:var(--teal)" title="Habit">H</span></div>
+          <div class="sched-window"><span class="chip-sm" style="--cc:var(--violet)" title="Habit">H</span></div>
           <div class="sched-window"><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--red)" title="Breaking">B</span></div>
-          <div class="sched-window"><span class="chip-sm" style="--cc:var(--teal)" title="Habit">H</span></div>
+          <div class="sched-window"><span class="chip-sm" style="--cc:var(--violet)" title="Habit">H</span></div>
           <div class="sched-window"><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span></div>
-          <div class="sched-window"><span class="chip-sm" style="--cc:var(--teal)" title="Habit">H</span><span class="chip-sm" style="--cc:var(--promo)" title="Promo">🎁</span><span class="chip-sm" style="--cc:var(--red)" title="Breaking">B</span></div>
+          <div class="sched-window"><span class="chip-sm" style="--cc:var(--violet)" title="Habit">H</span><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--promo)" title="Promo">Pr</span></div>
           <div class="sched-window"></div>
         </div>
       </div>
 
       <div class="sched-row reveal" data-anim="up">
-        <div class="sched-seg"><h4>Engaged User</h4><div class="bg">10 budget + 2 Breaking = 12</div></div>
+        <div class="sched-seg"><h4>Engaged User</h4><div class="bg">10 budget + 1 Breaking + 1 Promo = 12</div></div>
         <div class="sched-track">
-          <div class="sched-window"><span class="chip-sm" style="--cc:var(--teal)" title="Habit">H</span></div>
+          <div class="sched-window"><span class="chip-sm" style="--cc:var(--violet)" title="Habit">H</span></div>
           <div class="sched-window"><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--red)" title="Breaking">B</span></div>
-          <div class="sched-window"><span class="chip-sm" style="--cc:var(--teal)" title="Habit">H</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span></div>
-          <div class="sched-window"><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--violet)" title="Continuity">C</span><span class="chip-sm" style="--cc:var(--violet)" title="Continuity">C</span></div>
-          <div class="sched-window"><span class="chip-sm" style="--cc:var(--teal)" title="Habit">H</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--red)" title="Breaking">B</span></div>
+          <div class="sched-window"><span class="chip-sm" style="--cc:var(--violet)" title="Habit">H</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span></div>
+          <div class="sched-window"><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span></div>
+          <div class="sched-window"><span class="chip-sm" style="--cc:var(--violet)" title="Habit">H</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--promo)" title="Promo">Pr</span></div>
           <div class="sched-window"></div>
         </div>
       </div>
 
       <div class="sched-row reveal" data-anim="up">
-        <div class="sched-seg"><h4>Active User</h4><div class="bg">15 budget + 2 Breaking = 17</div></div>
+        <div class="sched-seg"><h4>Active User</h4><div class="bg">15 budget + 1 Breaking + 1 Promo = 17</div></div>
         <div class="sched-track">
-          <div class="sched-window"><span class="chip-sm" style="--cc:var(--teal)" title="Habit">H</span><span class="chip-sm" style="--cc:var(--teal)" title="Habit">H</span></div>
+          <div class="sched-window"><span class="chip-sm" style="--cc:var(--violet)" title="Habit">H</span><span class="chip-sm" style="--cc:var(--violet)" title="Habit">H</span></div>
           <div class="sched-window"><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--red)" title="Breaking">B</span></div>
-          <div class="sched-window"><span class="chip-sm" style="--cc:var(--teal)" title="Habit">H</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span></div>
-          <div class="sched-window"><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--violet)" title="Continuity">C</span><span class="chip-sm" style="--cc:var(--violet)" title="Continuity">C</span><span class="chip-sm" style="--cc:var(--promo)" title="Promo">🎁</span></div>
-          <div class="sched-window"><span class="chip-sm" style="--cc:var(--teal)" title="Habit">H</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--promo)" title="Promo">🎁</span><span class="chip-sm" style="--cc:var(--red)" title="Breaking">B</span></div>
+          <div class="sched-window"><span class="chip-sm" style="--cc:var(--violet)" title="Habit">H</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span></div>
+          <div class="sched-window"><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span></div>
+          <div class="sched-window"><span class="chip-sm" style="--cc:var(--violet)" title="Habit">H</span><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--amber)" title="Editorial">E</span><span class="chip-sm" style="--cc:var(--promo)" title="Promo">Pr</span></div>
           <div class="sched-window"></div>
         </div>
       </div>
 
       <div class="sched-row reveal" data-anim="up">
-        <div class="sched-seg"><h4>Dormant User</h4><div class="bg">1–2 budget + 2 Breaking = 3–4</div></div>
+        <div class="sched-seg"><h4>Dormant User</h4><div class="bg">1–2 budget + 1 Breaking + 1 Promo = 3–4</div></div>
         <div class="sched-track">
           <div class="sched-window"></div>
           <div class="sched-window"><span class="chip-sm" style="--cc:var(--red)" title="Breaking">B</span></div>
           <div class="sched-window"><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span></div>
           <div class="sched-window"></div>
-          <div class="sched-window"><span class="chip-sm" style="--cc:var(--promo)" title="Promo">🎁</span><span class="chip-sm" style="--cc:var(--red)" title="Breaking">B</span></div>
+          <div class="sched-window"><span class="chip-sm" style="--cc:var(--green)" title="Personal">P</span><span class="chip-sm" style="--cc:var(--promo)" title="Promo">Pr</span></div>
           <div class="sched-window"></div>
         </div>
       </div>
 
       </div>
 
-      <p class="sched-note">Pola ini ilustratif: susunan aktual tetap ditentukan Decision Engine secara real-time berdasarkan sinyal user, bukan jadwal statis. Yang tetap: total volume tidak melewati budget segmen (di luar Breaking), penempatan kategori mengikuti window yang sesuai dari governance (mis. Editorial hanya muncul di Info/Dev/Sore, Promo hanya di Dev/Sore), dan Breaking News dikirim pada jam yang sama untuk seluruh user.</p>
+      <p class="sched-note">Pola ini ilustratif: susunan aktual tetap ditentukan Decision Engine secara real-time berdasarkan sinyal user, bukan jadwal statis. Yang tetap: total volume konten tidak melewati budget segmen (di luar Breaking &amp; Promo), penempatan kategori mengikuti window yang sesuai dari governance (mis. Editorial hanya muncul di Info/Dev/Sore, Promo hanya di Dev/Sore), dan Breaking News dikirim pada jam yang sama untuk seluruh user. Slot Promo di sini adalah <b>maksimum</b> — tidak selalu terisi tiap hari, tergantung ada/tidaknya campaign yang menyasar user tersebut (lihat mekanisme di bagian Push Promo).</p>
     </div>
-  </div>
-</section>
 
-<!-- ============ DORMANT ============ -->
-<section id="dormant">
-  <div class="wrap">
-    <div class="sh reveal" data-anim="up">
-      <div class="eyebrow"><span class="dot"></span>05 Segmentasi &amp; Retensi</div>
-      <h2>Dormant user re-engagement strategy</h2>
-      <p class="lede">Dihitung per user, bukan blast bersama. Setiap tahap dipicu dari tanggal terakhir user itu sendiri aktif, jadi tiap user berjalan di jam &amp; hari-nya masing-masing.</p>
-    </div>
-    <div class="stage-track">
-      <div class="stage-line"></div>
-      <div class="stages">
-        <div class="stage reveal" data-anim="up"><div class="dotmark"></div><h4>3 Hari</h4><div class="stage-since">sejak user terakhir aktif</div><p>Reminder ringan, sama seperti habit. Tanpa insentif.</p><div class="cta">"Ini berita yang mungkin kamu lewatkan hari ini"</div></div>
-        <div class="stage reveal d1" data-anim="up"><div class="dotmark"></div><h4>7 Hari</h4><div class="stage-since">sejak user terakhir aktif</div><p>Highlight topik favorit, 1x/hari. Tanpa insentif.</p><div class="cta">"Topik yang kamu ikuti masih ramai dibahas"</div></div>
-        <div class="stage reveal d2" data-anim="up"><div class="dotmark"></div><h4>14 Hari</h4><div class="stage-since">sejak user terakhir aktif</div><p>Kurasi konten personal, 1x/2 hari + konten eksklusif.</p><div class="cta">"Rangkuman pilihan redaksi untukmu"</div></div>
-        <div class="stage reveal d3" data-anim="up"><div class="dotmark"></div><h4>30 Hari</h4><div class="stage-since">sejak user terakhir aktif</div><p>Win-back campaign, 2x/minggu + insentif ringan.</p><div class="cta">"Berita-berita besar bulan ini yang perlu kamu tahu"</div></div>
-        <div class="stage reveal d4" data-anim="up"><div class="dotmark"></div><h4>90 Hari</h4><div class="stage-since">sejak user terakhir aktif</div><p>Reaktivasi terakhir, 1x/minggu + insentif signifikan.</p><div class="cta">"Ringkasan berita utama selama kamu tidak aktif"</div></div>
+    <div class="gov-sub">
+      <h3 class="reveal" data-anim="up">Push Promo: mekanisme terpisah dari budget konten</h3>
+      <p class="lede reveal" data-anim="up" style="margin-top:-.6rem;">Saat ini Promo ikut berebut slot di budget harian per user, sehingga rawan tenggelam oleh konten lain dan tujuan campaign-nya sendiri tidak tercapai. Ke depan, Promo dikeluarkan sepenuhnya dari budget konten dan diberi jalur pengiriman sendiri.</p>
+
+      <div class="exp-vs reveal" data-anim="up" style="margin-top:1.6rem;">
+        <div class="exp-col"><div class="kl">Saat Ini</div><p>Promo termasuk dalam budget harian per segmen (mis. Active User 15 push/hari termasuk Promo), bersaing langsung dengan Breaking, Editorial, Habit, dan Personal untuk slot &amp; perhatian user.</p></div>
+        <div class="exp-vs-mid">VS</div>
+        <div class="exp-col exp"><div class="kl">Proposed</div><p>Promo dikeluarkan dari budget konten. Admin memilih target &amp; jumlah penerima secara sadar lewat dua opsi pengiriman di bawah, dengan estimasi reach yang transparan sebelum kirim.</p></div>
       </div>
-    </div>
-    <div class="stat-note reveal" data-anim="up" style="margin-top:2.4rem;">
-      <div class="kl">Cara kerjanya</div>
-      <p>Setiap user punya "jam dormant"-nya sendiri, dihitung sejak tanggal terakhir dia aktif. Begitu ambang hari terlampaui tanpa aktivitas, dia otomatis naik ke tahap berikutnya. <b>Begitu user kembali aktif kapan pun, journey ini langsung berhenti</b> dan dia kembali ke treatment normal sesuai segmennya, bukan dilanjutkan atau diulang. Kalau sampai 90 hari tetap tidak kembali, dia tidak terus di-recall berulang, frekuensinya diturunkan ke budget minimum Dormant (1–2 push/hari) sampai ada sinyal baru yang mengaktifkannya lagi.</p>
+
+      <div class="promo-interactive reveal" data-anim="up">
+        <div class="promo-toggle">
+          <button class="promo-tab active" id="promoTabA" type="button" onclick="setPromoTab('a')">Opsi A — All User Broadcast<span class="st">Maks. 1x / hari lintas campaign</span></button>
+          <button class="promo-tab" id="promoTabB" type="button" onclick="setPromoTab('b')">Opsi B — Targeted Cluster<span class="st">Tidak terikat batas all-user</span></button>
+        </div>
+        <div class="promo-panel">
+          <div class="promo-visual">
+            <div class="promo-reach-grid" id="promoReachGrid"></div>
+            <div class="promo-reach-pct" id="promoReachPct">100%</div>
+            <div class="promo-reach-sub" id="promoReachSub">≈3.000.000 dari 3.000.000 user</div>
+          </div>
+          <div class="promo-detail">
+            <p id="promoDetailText">Admin kirim ke seluruh basis user tanpa filter minat. Estimasi reach ditampilkan penuh sebelum kirim, dan tunduk pada batas harian: maksimum 1x broadcast all-user per hari lintas seluruh campaign, agar tidak ada penumpukan promo skala penuh dalam satu hari.</p>
+
+            <div class="promo-select-wrap" id="promoSelectWrap">
+              <label>Pilih cluster minat/niche</label>
+              <select class="promo-select" id="promoClusterSelect" onchange="updatePromoCluster()">
+                <option value="450000|15|Minat Teknologi">Minat Teknologi — ≈450.000 user (15%)</option>
+                <option value="600000|20|Minat Olahraga">Minat Olahraga — ≈600.000 user (20%)</option>
+                <option value="550000|18|Minat Kesehatan &amp; Lifestyle">Minat Kesehatan &amp; Lifestyle — ≈550.000 user (18%)</option>
+                <option value="700000|23|Minat Hiburan &amp; Selebriti">Minat Hiburan &amp; Selebriti — ≈700.000 user (23%)</option>
+              </select>
+            </div>
+
+            <div class="promo-tags" id="promoTags">
+              <span class="promo-tag">Maks 1x broadcast all-user / hari</span>
+              <span class="promo-tag">Window Dev &amp; Sore</span>
+              <span class="promo-tag">Spacing Promo→Promo 240 mnt</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-note reveal" data-anim="up">
+        <div class="kl">Batas Aman Per User (berlaku untuk kedua opsi)</div>
+        <p>Berapa pun jumlah campaign Promo yang berjalan hari itu, <b>maksimum 1 Push Promo per user per hari</b> — sistem otomatis memilih satu campaign dengan prioritas tertinggi untuk tiap user jika ada lebih dari satu campaign yang menyasarnya di hari yang sama. Waktu kirim tetap di window <b>Development (14.00–18.00, sore)</b> &amp; <b>Evening (18.00–21.00, malam)</b> seperti sebelumnya, spacing minimum Promo → Promo 240 menit tetap berlaku, dan Promo tetap tidak boleh dikirim saat quiet hour non-darurat.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1033,7 +1413,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 <section id="experiments">
   <div class="wrap">
     <div class="sh reveal" data-anim="up">
-      <div class="eyebrow"><span class="dot"></span>06 Eksperimen &amp; Roadmap</div>
+      <div class="eyebrow"><span class="dot"></span>06 Eksekusi: Eksperimen &amp; Roadmap</div>
       <h2>Experiment framework</h2>
       <p class="lede">Tiap eksperimen diarahkan ke kelompok user tertentu, membandingkan perlakuan yang berjalan saat ini (existing) dengan skenario baru (experiment).</p>
       <p class="lede" style="margin-top:.6rem;font-size:.92rem;">Catatan: sistem saat ini belum membedakan kategori atau segmen apa pun, seluruh user menerima notifikasi yang sama persis. Kolom Existing di bawah merefleksikan kondisi tersebut.</p>
@@ -1057,7 +1437,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
           <div><span class="exp-num">02</span><h3>Copywriting &amp; Judul: Seluruh Jenis Notifikasi</h3></div>
         </div>
         <div class="exp-vs">
-          <div class="exp-col"><div class="kl">Existing</div><p>Setiap kategori (Breaking, Editorial, Habit, Continuity, Personal, Promo) dikirim dengan judul &amp; gaya baku yang sama, tanpa variasi angle</p></div>
+          <div class="exp-col"><div class="kl">Existing</div><p>Setiap kategori (Breaking, Editorial, Habit, Personal, Promo) dikirim dengan judul &amp; gaya baku yang sama, tanpa variasi angle</p></div>
           <div class="exp-vs-mid">VS</div>
           <div class="exp-col exp"><div class="kl">Experiment</div><p>Variasi angle judul per kategori (mis. human-interest &amp; dampak langsung untuk Breaking, gaya percakapan untuk Habit &amp; Personal) diuji ke seluruh segmen</p></div>
         </div>
@@ -1107,9 +1487,9 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
         <div class="exp-vs">
           <div class="exp-col"><div class="kl">Existing</div><p>Tidak ada hierarki prioritas, seluruh notifikasi diperlakukan setara untuk semua user</p></div>
           <div class="exp-vs-mid">VS</div>
-          <div class="exp-col exp"><div class="kl">Experiment</div><p>Bobot dinamis, prioritas Continuity dinaikkan sementara saat user sedang aktif membaca</p></div>
+          <div class="exp-col exp"><div class="kl">Experiment</div><p>Bobot dinamis, prioritas Push Personal dinaikkan sementara saat user sedang aktif membaca (kelanjutan sesi)</p></div>
         </div>
-        <div class="exp-metric">Metrik fokus: <b>CTR Continuity, kedalaman sesi</b></div>
+        <div class="exp-metric">Metrik fokus: <b>CTR Push Personal, kedalaman sesi</b></div>
       </div>
 
     </div>
@@ -1120,7 +1500,7 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
 <section id="roadmap">
   <div class="wrap">
     <div class="sh reveal" data-anim="up">
-      <div class="eyebrow"><span class="dot"></span>06 Eksperimen &amp; Roadmap</div>
+      <div class="eyebrow"><span class="dot"></span>06 Eksekusi: Eksperimen &amp; Roadmap</div>
       <h2>Roadmap implementasi: peluncuran bertahap</h2>
       <p class="lede">Seluruh kategori push diuji bersamaan sebagai satu paket ke sekelompok user kecil, lalu diperluas sedikit demi sedikit berdasarkan performa nyata di tiap tahap.</p>
     </div>
@@ -1156,24 +1536,157 @@ table.spacing td.gap{font-family:'IBM Plex Mono',monospace;color:var(--amber);}
   </div>
 </section>
 
+<!-- ============ TARGET KPI ============ -->
+<section id="target-kpi">
+  <div class="wrap">
+    <div class="sh reveal" data-anim="up">
+      <div class="eyebrow"><span class="dot"></span>07 Eksekusi: Target &amp; Dampak</div>
+      <h2>Target KPI setelah implementasi</h2>
+      <p class="lede">Acuan keberhasilan tiap fase roadmap — dikalibrasi ulang dari hasil eksperimen, bukan janji pasti di awal.</p>
+    </div>
+
+    <div class="exp-list">
+      <div class="exp-card reveal" data-anim="up">
+        <div class="exp-head"><div><span class="exp-num">KPI 01</span><h3>Click-Through Rate</h3></div></div>
+        <div class="exp-vs">
+          <div class="exp-col"><div class="kl">Saat Ini</div><p>0,05% CTR — ±1.500 klik dari ~3 juta pengiriman/hari</p></div>
+          <div class="exp-vs-mid">→</div>
+          <div class="exp-col exp"><div class="kl">Target</div><p>2–3% CTR, setara benchmark industri — estimasi ±60.000 klik/hari</p></div>
+        </div>
+      </div>
+
+      <div class="exp-card reveal" data-anim="up">
+        <div class="exp-head"><div><span class="exp-num">KPI 02</span><h3>Frekuensi Push per User</h3></div></div>
+        <div class="exp-vs">
+          <div class="exp-col"><div class="kl">Saat Ini</div><p>60–70 push/hari, seragam untuk seluruh user tanpa memandang segmen</p></div>
+          <div class="exp-vs-mid">→</div>
+          <div class="exp-col exp"><div class="kl">Target</div><p>&lt;20 push/hari, disesuaikan budget tiap segmen (New/Engaged/Active/Dormant)</p></div>
+        </div>
+      </div>
+
+      <div class="exp-card reveal" data-anim="up">
+        <div class="exp-head"><div><span class="exp-num">KPI 03</span><h3>Tren User Aktif</h3></div></div>
+        <div class="exp-vs">
+          <div class="exp-col"><div class="kl">Saat Ini</div><p>Menurun ±1,6 juta user dalam 2 tahun terakhir (iOS &amp; Android)</p></div>
+          <div class="exp-vs-mid">→</div>
+          <div class="exp-col exp"><div class="kl">Target</div><p>Tren stabil, lalu bertumbuh — dipantau lewat MAU &amp; D+7 return rate</p></div>
+        </div>
+      </div>
+
+      <div class="exp-card reveal" data-anim="up">
+        <div class="exp-head"><div><span class="exp-num">KPI 04</span><h3>Fatigue &amp; Unsubscribe</h3></div></div>
+        <div class="exp-vs">
+          <div class="exp-col"><div class="kl">Saat Ini</div><p>Belum terukur terstruktur; keluhan "notifikasi spammy" berulang di review</p></div>
+          <div class="exp-vs-mid">→</div>
+          <div class="exp-col exp"><div class="kl">Target</div><p>Fatigue score &amp; unsubscribe rate turun bertahap, dipantau tiap fase rollout</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUSINESS IMPACT ============ -->
+<section id="business-impact">
+  <div class="wrap">
+    <div class="sh reveal" data-anim="up">
+      <div class="eyebrow"><span class="dot"></span>07 Eksekusi: Target &amp; Dampak</div>
+      <h2>Dampak bisnis yang diharapkan</h2>
+      <p class="lede">Proyeksi terukur berbasis benchmark industri &amp; data internal saat ini — bukan angka final.</p>
+    </div>
+
+    <div class="impact-row">
+      <div class="impact-card reveal" data-anim="up">
+        <h4>CTR</h4>
+        <div class="v">0,05% → 2–3%</div>
+        <p>Didorong oleh segmentasi &amp; distribusi ber-niche lewat Decision Engine.</p>
+      </div>
+      <div class="impact-card reveal" data-anim="up" style="transition-delay:.06s;">
+        <h4>Retensi</h4>
+        <div class="v">Tren turun → stabil/naik</div>
+        <p>Diukur dari D+7 return &amp; MAU, terutama pasca perbaikan dormant journey.</p>
+      </div>
+      <div class="impact-card reveal" data-anim="up" style="transition-delay:.12s;">
+        <h4>Notification Fatigue</h4>
+        <div class="v">Turun bertahap</div>
+        <p>Hasil dari frequency cap, spacing, dan quiet hour per segmen.</p>
+      </div>
+      <div class="impact-card reveal" data-anim="up" style="transition-delay:.18s;">
+        <h4>Session / PV per User</h4>
+        <div class="v">Naik mengikuti Objective Framework</div>
+        <p>Engagement → Growth → Habit &amp; Retention.</p>
+      </div>
+      <div class="impact-card reveal" data-anim="up" style="transition-delay:.24s;">
+        <h4>Peluang Revenue</h4>
+        <div class="v">Belum dikuantifikasi</div>
+        <p>Berpotensi lewat inventory Push Promo bertarget &amp; user base yang lebih sehat — akan diestimasi bersama tim Growth/Monetization setelah data eksperimen fase 2 tersedia.</p>
+      </div>
+    </div>
+
+    <div class="urg-cost reveal" data-anim="up">
+      <div class="col">
+        <div class="kl">Setiap Hari Ditunda</div>
+        <div class="big">~58.500 klik hilang</div>
+        <div class="kl" style="margin-top:.3rem;font-size:.62rem;">selisih antara kondisi saat ini &amp; benchmark industri, per hari</div>
+      </div>
+      <div class="mid">→</div>
+      <div class="col">
+        <div class="kl">Potensi Bila Segera Ditangani</div>
+        <div class="big">Engagement, DAU &amp; retensi naik berjenjang</div>
+        <div class="kl" style="margin-top:.3rem;font-size:.62rem;">mengikuti Objective Framework: engagement → growth → habit &amp; retention</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CLOSING ============ -->
 <section id="closing">
   <div class="wrap">
     <div class="eyebrow reveal" data-anim="up"><span class="dot"></span>Penutup</div>
-    <h2 class="reveal" data-anim="scale">Satu framework, empat tim, satu tujuan</h2>
+    <div class="principle-quote">
+      <p class="big-line reveal" data-anim="up">Push notification yang ideal terasa seperti <em>diingatkan oleh teman yang tahu minat kita</em> — bukan diganggu oleh sistem yang menyiarkan hal yang sama ke semua orang.</p>
+    </div>
+    <div class="grid principle-pillars" style="margin-top:2.2rem;">
+      <div class="card reveal" data-anim="up"><h4>Bukan Volume</h4><p>Push yang baik diukur dari relevansi yang dirasakan user, bukan dari berapa banyak yang berhasil dikirim.</p></div>
+      <div class="card reveal" data-anim="up" style="transition-delay:.08s;"><h4>Bukan Interupsi</h4><p>Setiap push punya alasan untuk hadir di momen itu — kalau tidak menambah nilai, lebih baik tidak dikirim.</p></div>
+      <div class="card reveal" data-anim="up" style="transition-delay:.16s;"><h4>Dipercaya, Bukan Ditoleransi</h4><p>Tujuan akhirnya bukan sekadar user tidak mematikan notifikasi, tapi user menantikannya.</p></div>
+    </div>
+    <h2 class="reveal" data-anim="scale" style="margin-top:4rem;">Satu framework, empat tim, satu tujuan</h2>
     <div class="team-row">
       <div class="team reveal" data-anim="up"><h4>Product</h4><p>Menentukan prioritas fitur &amp; metrik keberhasilan tiap fase</p></div>
       <div class="team reveal" data-anim="up"><h4>Engineering</h4><p>Membangun Decision Engine &amp; Push Delivery Engine</p></div>
       <div class="team reveal" data-anim="up"><h4>Data</h4><p>Menyediakan sinyal, skor fatigue, dan hasil eksperimen</p></div>
       <div class="team reveal" data-anim="up"><h4>Editorial</h4><p>Menjaga kualitas &amp; kepatuhan konten pada governance</p></div>
     </div>
-    <div class="foot">detikcom · Push Notification Strategy · Juli 2026</div>
+    <div class="foot">detikcom · Notification Strategy · Juli 2026</div>
   </div>
 </section>
 
 </main>
 
 <script>
+// hero typewriter
+function typeWriter(el, text, speed, done){
+  let i = 0;
+  (function tick(){
+    if(i <= text.length){
+      el.textContent = text.slice(0, i);
+      i++;
+      setTimeout(tick, speed);
+    } else if(done){ done(); }
+  })();
+}
+window.addEventListener('DOMContentLoaded', ()=>{
+  const l1 = document.getElementById('typeLine1');
+  const l2 = document.getElementById('typeLine2');
+  if(l1 && l2){
+    setTimeout(()=>{
+      typeWriter(l1, 'Notification', 55, ()=>{
+        typeWriter(l2, 'Strategy', 55);
+      });
+    }, 300);
+  }
+});
+
 // scroll progress
 const fill = document.getElementById('progressFill');
 function updateProgress(){
@@ -1217,7 +1730,7 @@ document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
 
 // dot nav active state
 const dotLinks = document.querySelectorAll('.dotnav a');
-const dotSections = ['hero','current','principles','priority','engine','segmentation','experiments','closing'].map(id=>document.getElementById(id));
+const dotSections = ['hero','agenda','current','principles','priority','engine','segmentation','experiments','business-impact','closing'].map(id=>document.getElementById(id));
 function updateDots(){
   let idx = 0;
   dotSections.forEach((sec,i)=>{
@@ -1300,6 +1813,80 @@ const rmObserver = new IntersectionObserver((entries)=>{
   });
 },{threshold:0.6, rootMargin:'-20% 0px -20% 0px'});
 rmSteps.forEach(s=>rmObserver.observe(s));
+
+// promo interactive widget
+const promoGrid = document.getElementById('promoReachGrid');
+if(promoGrid){
+  for(let i=0;i<100;i++){
+    const d = document.createElement('div');
+    d.className = 'promo-reach-dot';
+    promoGrid.appendChild(d);
+  }
+}
+const promoDots = promoGrid ? promoGrid.querySelectorAll('.promo-reach-dot') : [];
+const promoReachPct = document.getElementById('promoReachPct');
+const promoReachSub = document.getElementById('promoReachSub');
+const promoDetailText = document.getElementById('promoDetailText');
+const promoSelectWrap = document.getElementById('promoSelectWrap');
+const promoClusterSelect = document.getElementById('promoClusterSelect');
+const promoTabA = document.getElementById('promoTabA');
+const promoTabB = document.getElementById('promoTabB');
+const promoTags = document.getElementById('promoTags');
+
+function fillPromoGrid(pct){
+  const filled = Math.round(pct);
+  promoDots.forEach((d,i)=>{ d.classList.toggle('filled', i < filled); });
+}
+
+function setPromoTab(which){
+  if(which === 'a'){
+    promoTabA.classList.add('active');
+    promoTabB.classList.remove('active');
+    promoSelectWrap.classList.remove('show');
+    fillPromoGrid(100);
+    promoReachPct.textContent = '100%';
+    promoReachSub.textContent = '≈3.000.000 dari 3.000.000 user';
+    promoDetailText.textContent = 'Admin kirim ke seluruh basis user tanpa filter minat. Estimasi reach ditampilkan penuh sebelum kirim, dan tunduk pada batas harian: maksimum 1x broadcast all-user per hari lintas seluruh campaign, agar tidak ada penumpukan promo skala penuh dalam satu hari.';
+    promoTags.innerHTML = '<span class="promo-tag">Maks 1x broadcast all-user / hari</span><span class="promo-tag">Window Dev & Sore</span><span class="promo-tag">Spacing Promo→Promo 240 mnt</span>';
+  } else {
+    promoTabB.classList.add('active');
+    promoTabA.classList.remove('active');
+    promoSelectWrap.classList.add('show');
+    updatePromoCluster();
+    promoDetailText.textContent = 'Admin memilih cluster berdasarkan minat/niche bacaan. Estimasi reach ditampilkan sesuai ukuran cluster sebelum kirim. Tidak terikat batas all-user, karena audiens sudah lebih kecil & relevan sejak awal — bisa berjalan lebih dari 1x sehari selama tidak melanggar spacing & batas 1 promo/user/hari.';
+    promoTags.innerHTML = '<span class="promo-tag">Tidak terikat batas all-user</span><span class="promo-tag">Window Dev & Sore</span><span class="promo-tag">Spacing Promo→Promo 240 mnt</span>';
+  }
+}
+
+function updatePromoCluster(){
+  if(!promoClusterSelect) return;
+  const [count, pct, label] = promoClusterSelect.value.split('|');
+  fillPromoGrid(parseFloat(pct));
+  promoReachPct.textContent = pct + '%';
+  promoReachSub.textContent = '≈' + Number(count).toLocaleString('id-ID') + ' dari 3.000.000 user · ' + label;
+}
+
+if(promoGrid){ fillPromoGrid(100); }
+
+// funnel figures (Kirim - Buka - Abaikan - Pergi)
+function personSVG(color){
+  return '<svg viewBox="0 0 12 12"><circle class="fig-body" cx="6" cy="3" r="2.4" style="--fig-color:'+color+'"/><path class="fig-body" d="M1 12c0-3 2.5-5 5-5s5 2 5 5" style="--fig-color:'+color+'"/></svg>';
+}
+function fillFunnel(id, total, activeCount, activeColor, inactiveColor){
+  const el = document.getElementById(id);
+  if(!el) return;
+  let html = '';
+  for(let i=0;i<total;i++){
+    html += personSVG(i < activeCount ? activeColor : inactiveColor);
+  }
+  el.innerHTML = html;
+}
+const cText = getComputedStyle(document.documentElement);
+fillFunnel('figKirim', 30, 30, '#0C1F3D', '#0C1F3D');
+fillFunnel('figBuka', 30, 1, '#B8790A', 'rgba(13,34,68,.14)');
+fillFunnel('figAbaikan', 30, 0, '#8D9AB0', 'rgba(13,34,68,.14)');
+fillFunnel('figPergi', 30, 4, '#D93B27', 'rgba(13,34,68,.14)');
 </script>
 </body>
 </html>
+
